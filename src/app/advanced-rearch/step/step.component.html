@@ -1,0 +1,68 @@
+<div  class="step">
+    <nz-steps [(nzCurrent)]="current">
+        <nz-step [nzTitle]="'1设置用户名'">
+            <ng-template #nzIcon>
+                <div class="nzIconContent">
+                    <div class="nzIconLeft" [ngClass]="{'oneActive': oneIsActive}"></div>
+                    <div class="nzIconRight" [ngClass]="{'twoActive': TwoisActive}"></div>
+                </div>
+
+            </ng-template>
+        </nz-step>
+        <nz-step [nzTitle]="'2填写账号信息'">
+            <ng-template #nzIcon>
+
+                <div class="nzIconSContent">
+                    <div class="nzIconLeft ">
+                        <div class="nzIconLeftUpContent" [ngClass]="{'threeActive': threeIsActive}" ></div>
+                        <div class="nzIconLeftDownContent" [ngClass]="{'fourActive': fourIsActive}"></div>
+                        <div class="nzIconRightContent" [ngClass]="{'fiveActive': fiveIsActive}"></div>
+                    </div>
+                    <div class="nzIconRight ant-steps-icon" [ngClass]="{'sixActive': sixIsActive}"></div>
+                </div>
+            </ng-template>
+        </nz-step>
+        <nz-step [nzTitle]="'3设置企业信息'">
+            <ng-template #nzIcon>
+                <div class="nzIconSContent">
+                    <div class="nzIconLeft ">
+                        <div class="nzIconLeftUpContent" [ngClass]="{'sevenActive': sevenIsActive}"></div>
+                        <div class="nzIconLeftDownContent" [ngClass]="{'eightActive': eightIsActive}"></div>
+                        <div class="nzIconRightContent" [ngClass]="{'nineActive': nineIsActive}"></div>
+                    </div>
+                    <div class="nzIconRight ant-steps-icon" [ngClass]="{'tenActive': tenIsActive}"></div>
+                </div>
+            </ng-template>
+        </nz-step>
+        <nz-step [nzTitle]="'4注册成功'">
+            <ng-template #nzIcon>
+
+                <div class="nzIconTContent ant-steps-icon">
+                    <div class="nzIconLeft ant-steps-icon">
+                        <div class="nzIconLeftUpContent" [ngClass]="{'elevenActive': elevenIsActive}"></div>
+                        <div class="nzIconLeftDownContent" [ngClass]="{'twelveActive': twelveIsActive}"></div>
+                    </div>
+                    <div class="nzIconRightContent ant-steps-icon" [ngClass]="{'thirteenActive': thirteenIsActive}"></div>
+                </div>
+            </ng-template>
+        </nz-step>
+    </nz-steps>
+
+    <div class="steps-content" *ngIf="firstContent" style="font-size:32px;color:red;">时间就是金钱，我的朋友。Time is money my friend.</div>
+    <div class="steps-content" *ngIf="secondContent" style="font-size:32px;color:pink;">为了部落</div>
+    <div class="steps-content" *ngIf="thirdContent" style="font-size:32px;color:green">兽人永不为奴</div>
+    <div class="steps-content" *ngIf="fourContent" style="font-size:32px;color:blue">愿黑暗与你同在!</div>
+
+    <div class="steps-action">
+        <!--&&current<3-->
+        <button nz-button [nzType]="'default'" (click)="pre()" *ngIf="current > 0">
+        <span>上一步</span>
+      </button>
+        <button nz-button [nzType]="'default'" (click)="next()" *ngIf="current < 3">
+        <span>下一步</span>
+      </button>
+        <!--<button nz-button [nzType]="'primary'" (click)="done()" *ngIf="current === 3">
+        <span>完成</span>
+      </button>-->
+    </div>
+</div>

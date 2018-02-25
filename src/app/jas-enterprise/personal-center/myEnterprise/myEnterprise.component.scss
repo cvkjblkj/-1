@@ -1,0 +1,71 @@
+.myEnterprise {
+  .content {
+    position: relative;
+    top: 30px;
+    margin-bottom: 30px;
+    .tabBox {
+      width: 100%;
+      border-bottom: 1px solid #e5e5e5;
+      .tab {
+        padding: 0 4px;
+        border-radius: 0;
+        margin: 0;
+        width: 40%;
+        .btn-reset {
+          position: absolute;
+          right: 10px
+        }
+        .clearfix {
+          li {
+            float: left; // border: 1px solid #E2E2E2;
+            width: 50%;
+            min-width: 100px;
+            height: 40px; // border-radius: 10px 10px 0 0;
+            border-bottom: none;
+            a,
+            .route-link {
+              text-align: center; // background-color: #F2F2F2;
+              width: 80%;
+              height: 100%;
+              display: inline-block;
+              color: #323232;
+              line-height: 40px; // border-radius: 10px 10px 0 0;
+              border: none;
+              cursor: pointer;
+              &:not(disabled):hover {
+                color: rgba(0, 161, 233, 1);
+                background-color: #fff;
+              }
+            }
+            .active {
+              background-color: #fff;
+              color: #323232;
+              border-bottom: 3px solid rgba(0, 161, 233, 1);
+            }
+          }
+        }
+      }
+      .createBox {
+        width: 40%;
+        float: right;
+        position: relative;
+        top: -37px;
+        padding: 0 10px;
+        .btn-info {
+          margin: 0 2px;
+          float: right
+        }
+      }
+    }
+    .enterpriseContent {
+      width: 98%; // border: 1px solid #e5e5e5;
+      border-radius: 5px;
+      margin: 0 6px 10px 10px;
+      position: absolute;
+      padding: 15px 0;
+    }
+  }
+  .ant-form-item {
+    margin-bottom: 15px;
+  }
+}

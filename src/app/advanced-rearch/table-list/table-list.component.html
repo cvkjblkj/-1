@@ -1,0 +1,124 @@
+<div style="padding:50px">
+  <nz-table #nzTable [nzDataSource]="_dataSet" [nzPageSize]="10" [nzShowQuickJumper]="true"  [nzTotal]="50" [nzShowSizeChanger]="true" [nzCustomNoResult]="true" [nzShowTotal]="true" [nzLoading]="true" [nzBordered]="true" (nzPageIndexChange)="PageIndexChange($event)"
+    (nzPageSizeChange)="nzPageSizeChange($event)">
+    <span noResult>没有数据啦，哈哈哈哈！！！</span>
+    <thead nz-thead>
+      <tr>
+        <th nz-th><span>Name</span></th>
+        <th nz-th><span>Age</span></th>
+        <th nz-th><span>Address</span></th>
+        <th nz-th><span>number</span></th>
+        <th nz-th><span>colorName</span></th>
+        <th nz-th><span>oracle</span></th>
+        <th nz-th><span>oracle</span></th>
+        <th nz-th><span>oracle</span></th>
+        <th nz-th><span>oracle</span></th>
+        <th nz-th><span>oracle</span></th>
+        <th nz-th><span>oracle</span></th>
+        <th nz-th><span>oracle</span></th>
+        <th nz-th><span>oracle</span></th>
+        <th nz-th><span>oracle</span></th>
+        <th nz-th><span>oracle</span></th>
+        <th nz-th><span>操作</span></th>
+      </tr>
+    </thead>
+    <tbody nz-tbody>
+      <tr nz-tbody-tr *ngFor="let data of nzTable.data">
+        <td nz-td>
+          <a>{{data.name}}</a>
+        </td>
+        <td nz-td>{{data.age}}</td>
+        <td nz-td>{{data.address}}</td>
+        <td nz-td>{{data.number}}</td>
+        <td nz-td>{{data.colorName}}</td>
+        <td nz-td>{{data.oracle}}</td>
+        <td nz-td>{{data.oracle}}</td>
+        <td nz-td>{{data.oracle}}</td>
+        <td nz-td>{{data.oracle}}</td>
+        <td nz-td>{{data.oracle}}</td>
+        <td nz-td>{{data.oracle}}</td>
+        <td nz-td>{{data.oracle}}</td>
+        <td nz-td>{{data.oracle}}</td>
+        <td nz-td>{{data.oracle}}</td>
+        <td nz-td>{{data.oracle}}</td>
+        <td nz-td>
+          <span class="btn btn-error">删除 </span>
+          <span class="btn btn-success">分享 </span>
+        </td>
+
+      </tr>
+    </tbody>
+  </nz-table>
+  <label nz-checkbox [(ngModel)]="_checked" (ngModelChange)="_console($event)">
+      <span>Checkbox</span>
+    </label>
+  <h3>
+    属性数据展示
+  </h3>
+  <!-- <nz-table #nzTable [nzDataSource]="data" [nzPageSize]="10">
+    <thead nz-thead>
+      <tr>
+        <th nz-th [nzWidth]="'40%'"><span>Name</span></th>
+        <th nz-th><span>Age</span></th>
+      </tr>
+    </thead>
+    <tbody nz-tbody>
+      <ng-template ngFor let-data [ngForOf]="nzTable.data">
+        <ng-template ngFor let-item [ngForOf]="expandDataCache[data.key]">
+          <tr nz-tbody-tr *ngIf="(item.parent&&item.parent.expand)||!(item.parent)">
+            <td nz-td>
+              <nz-row-indent [nzIndentSize]="item.level"></nz-row-indent>
+              <nz-row-expand-icon [(nzExpand)]="item.expand" (nzExpandChange)="collapse(expandDataCache[data.key],item,$event)" [nzShowExpand]="!item.children"></nz-row-expand-icon>
+              {{item.name}}
+            </td>
+            <td nz-td>
+              <span>{{item.key}}++++++</span>
+              <nz-radio-group [(ngModel)]="radioValue[item.key]">
+                <ng-template ngFor let-ruleItem [ngForOf]="item.ruleList">
+                  <label nz-radio [nzValue]="ruleItem.name" [nzDisabled]="ruleItem.name==='1'">
+                    <span>{{ruleItem.name}}</span>
+                  </label>
+                </ng-template>
+              </nz-radio-group>
+
+            </td>
+          </tr>
+        </ng-template>
+      </ng-template>
+    </tbody>
+  </nz-table> -->
+
+</div>
+
+
+<!-- 
+<grid-pagination></grid-pagination> -->
+
+<nz-radio-group [(ngModel)]="radioValue">
+  <label nz-radio [nzValue]="'A'">
+      <span>A</span>
+    </label>
+  <label nz-radio [nzValue]="'B'">
+      <span>B</span>
+    </label>
+  <label nz-radio [nzValue]="'C'">
+      <span>C</span>
+    </label>
+  <label nz-radio [nzValue]="'D'">
+      <span>D</span>
+    </label>
+</nz-radio-group>
+<nz-radio-group [(ngModel)]="radioValue2">
+  <label nz-radio [nzValue]="'AA'">
+        <span>AA</span>
+      </label>
+  <label nz-radio [nzValue]="'BA'">
+        <span>BA</span>
+      </label>
+  <label nz-radio [nzValue]="'CA'">
+        <span>CA</span>
+      </label>
+  <label nz-radio [nzValue]="'DA'">
+        <span>DA</span>
+      </label>
+</nz-radio-group>

@@ -1,0 +1,106 @@
+<div class="login-info">
+  <div class="component">
+    <div class="header">
+      <div *ngIf="!Property">
+        <enterprise-info></enterprise-info>
+      </div>
+      <!-- <div *ngIf="!Property">
+        <div class="cardLeft fl">
+          <div class="substance col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            暂无企业信息,
+            <span class="btn btn-message" (click)="apply()">申请加入新企业</span>
+          </div>
+        </div>
+      </div> -->
+      <div class="cardRight fr">
+        <div class="title">
+          登录信息
+        </div>
+        <div class="substance col-lg-12 col-md-12 col-sm-12 col-xs-12">
+          <table class="enterpriseTable  col-lg-11 col-md-11 col-sm-11 col-xs-11">
+            <tr class="table-cell">
+              <td class="table-td">登录账号:</td>
+              <td class="table-tr">
+                <span>12</span>
+              </td>
+            </tr>
+            <tr class="table-cell">
+              <td class="table-td">登录总次数:</td>
+              <td class="table-tr">
+                <span>34</span>
+              </td>
+            </tr>
+            <tr class="table-cell">
+              <td class="table-td">上次登录IP:</td>
+              <td class="table-tr">
+                <span>192.168.100.253</span>
+              </td>
+            </tr>
+            <tr class="table-cell">
+              <td class="table-td">上次登录时间:</td>
+              <td class="table-tr">
+                <span>2017-05-25 08:21:32</span>
+              </td>
+            </tr>
+
+
+          </table>
+        </div>
+
+      </div>
+    </div>
+    <div class="content">
+      <manage-info></manage-info>
+      <recommend-info></recommend-info>
+
+    </div>
+  </div>
+  <!-- 申请加入企业 -->
+  <nz-modal [nzVisible]="newVisible" *ngIf="newVisible" [nzWidth]="'600px'" [nzTitle]="modalTitle" [nzContent]="modalContent"
+    [nzFooter]="modalFooter" (nzOnCancel)="newCancel($event)">
+    <ng-template #modalTitle>
+      申请加入新企业
+    </ng-template>
+    <ng-template #modalContent>
+      <!-- (ngSubmit)="submitForm($event,validateForm.value)" -->
+      <form nz-form [formGroup]="appValidateForm" (ngSubmit)="submitForm($event,appValidateForm.value)">
+        <div nz-form-item nz-row>
+          <div nz-form-label nz-col [nzSpan]="6">
+            <label nz-form-item-required>企业名称</label>
+          </div>
+          <div nz-col [nzSpan]="11" nz-form-control [nzValidateStatus]="newGetFormControl('newEnterpriseName')">
+            <nz-input formControlName="newEnterpriseName" [nzType]="'text'" [nzPlaceHolder]="'请填写企业名称'" [nzSize]="'large'">
+            </nz-input>
+            <div>
+              请填写工商局注册的全称,支持中文、字母、数字、“_”、“-”、“()”,4-40个字符
+            </div>
+          </div>
+          <div nz-form-explain *ngIf="newGetFormControl('newEnterpriseName').dirty&&newGetFormControl('newEnterpriseName').hasError('required')">企业名称不能为空</div>
+          <div nz-form-explain *ngIf="newGetFormControl('newEnterpriseName').dirty&&newGetFormControl('newEnterpriseName').hasError('newEnterpriseName')">格式错误</div>
+
+        </div>
+        <div nz-form-item nz-row>
+          <div nz-form-label nz-col [nzSpan]="6">
+            <label>申请理由</label>
+          </div>
+          <div nz-col [nzSpan]="11" nz-form-control [nzValidateStatus]="newGetFormControl('enterpriseName')">
+            <nz-input formControlName="applyValue" [nzType]="'textarea'" [nzRows]="'4'" [nzPlaceHolder]="''"></nz-input>
+
+          </div>
+
+        </div>
+
+      </form>
+    </ng-template>
+
+
+    <ng-template #modalFooter>
+      <button nz-button class="btn-info" [nzType]="'submit'" [nzSize]="'large'" (click)="sendOk($event,appValidateForm.value)">
+        确认
+      </button>
+      <button nz-button [nzType]="'default'" [nzSize]="'large'" (click)="newCancel($event)">
+        取消
+      </button>
+    </ng-template>
+  </nz-modal>
+</div>

@@ -1,0 +1,107 @@
+.component {
+  padding: 15px;
+  border-radius: 10px;
+  overflow: auto;
+  .title {
+    padding: 5px 20px;
+  }
+  .substance {
+    overflow: auto;
+    padding: 10.5px 0;
+    .imgCard {
+      div {
+        width: 70px;
+        height: 70px;
+        border: 1px solid #e5e5e5;
+        position: relative;
+        left: 50%;
+        margin-left: -35px
+      }
+    }
+    .textCont {
+      position: relative;
+      left: -40px;
+      .enterpriseName {
+        .title {
+          padding-left: 0px
+        }
+        .manage {
+          .btn {}
+        }
+      }
+    }
+    .probation {
+      margin: 0 5px;
+      color: #ffffff;
+      position: relative;
+      top: -12px;
+      span {
+        background-color: rgba(255, 194, 0, 1);
+      }
+    }
+    .formal {
+      margin: 0 5px;
+      color: #ffffff;
+      position: relative;
+      top: -12px;
+      span {
+        background-color: rgba(255, 194, 0, 1);
+      }
+    }
+    .free {
+      margin: 0 5px;
+      color: #ffffff;
+      position: relative;
+      top: -12px;
+      span {
+        background-color: rgba(255, 194, 0, 1);
+      }
+    }
+    .immediate {
+      padding: 0 15px
+    }
+    .content {
+      padding: 10px 0 0 0;
+      clear: both
+    }
+    .foot {
+      // position: relative;
+      // top: 10px;
+      clear: both; // .btn-message {
+      //   float: right
+      // }
+    }
+  }
+  .btnBox {
+    padding: 100px 0;
+    .btn {
+      padding: 6.5px 15px;
+    }
+  }
+  .footer {
+    padding: 40px 20px;
+    border-top: 1px solid #e5e5e5;
+    border-bottom: 1px solid #e5e5e5;
+    .enterpriseTable {
+      .table-cell {
+        width: 25%;
+        border-right: 1px solid #e5e5e5;
+        height: 30px;
+        line-height: 30px;
+        .table-td {
+          width: 15%;
+          text-align: center;
+        }
+        .table-tr {
+          width: 10%;
+          .btn {
+            vertical-align: baseline;
+          }
+        }
+      }
+      .table-cell:last-child {
+        border: none
+      }
+    }
+  }
+}

@@ -1,0 +1,85 @@
+.owned-enterprise {
+  .text {
+    td {
+      border-top: none !important
+    }
+  }
+}
+
+.application {
+  .text {
+    td {
+      border-top: none !important;
+      padding: 8px 20px 8px 0px;
+    }
+  }
+}
+
+.myEnterprise .ant-form-item-control {
+  line-height: 18px !important;
+}
+
+.myEnterprise {
+  form .ant-form-explain {
+    float: right;
+    padding: 6px 0px 6px 0px;
+    color: #f04134;
+    width: 150px;
+    margin-right: 7px;
+  }
+}
+
+.application {
+  .ant-modal-body {
+    padding: 16px 70px;
+    font-size: 12px;
+    line-height: 1.5;
+  }
+}
+
+
+/*全局去掉ng-zorro的按钮边框值*/
+
+.ant-btn {
+  border-radius: 0 !important
+}
+
+.login-info .ant-form-item-control {
+  line-height: 18px !important;
+}
+
+.login-info .ant-form-item {
+  margin-bottom: 15px;
+}
+
+
+/*巡线卫士更换管理员弹框*/
+
+.patrol .select .ant-modal-body {
+  min-height: 200px;
+  .selectUser {
+    line-height: 40px;
+    .binding {
+      padding-right: 0
+    }
+    .Content {
+      padding-left: 0
+    }
+  }
+}
+
+
+/*阴保管家更换管理员弹框*/
+
+.protection .select .ant-modal-body {
+  min-height: 200px;
+  .selectUser {
+    line-height: 40px;
+    .binding {
+      padding-right: 0
+    }
+    .Content {
+      padding-left: 0
+    }
+  }
+}

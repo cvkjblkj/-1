@@ -1,0 +1,83 @@
+.menu-item {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  margin-top: 60px;
+  width: 240px;
+  overflow: scroll;
+}
+
+.menu-item-small {
+  width: 60px;
+  .menu-submenu-title {
+    span {
+      margin-left: 40px;
+    }
+  }
+}
+
+//菜单展开、收缩按钮风格
+.menu-collapsed-btn {
+  height: 30px;
+  width: 100%;
+  background-color: rgba(84, 81, 86, 0.8);
+  //position: absolute;
+  text-align: center;
+  i {
+    margin-top: 8px;
+  }
+}
+
+.menu-link {
+  color: #fff;
+  width: 100%;
+}
+.menu-link:hover {
+  color: #fff;
+  width: 100%;
+}
+
+.menu-li {
+  padding-left: 24px !important;
+}
+
+.menu-icon {
+  padding-right: 16px;
+}
+
+// 菜单收缩时，二级菜单标题的上下箭头样式
+.menu-submenu-title::before{
+  font-family: "anticon" !important;
+  font-style: normal;
+  vertical-align: baseline;
+  text-align: center;
+  text-transform: none;
+  text-rendering: auto;
+  position: absolute;
+  content: "\e61d";
+  //right: 16px;
+  top: 0;
+  display: inline-block;
+  font-size: 12px;
+  transform: scale(0.66666667) rotate(0deg);
+  -ms-filter: "progid:DXImageTransform.Microsoft.Matrix(sizingMethod='auto expand', M11=1, M12=0, M21=0, M22=1)";
+  zoom: 1;
+  transition: transform 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+  > div {
+    display: none !important;
+  }
+
+}
+
+.menu-submenu-title2.menu-submenu-title::before{
+  transform: rotate(180deg) scale(0.75);
+}
+
+.ant-menu-inline .ant-menu-submenu-title{
+  padding-left: 64px !important;
+}
+
+.menu-placeholder {
+  min-width: 14px;
+  margin-right: 8px;
+}

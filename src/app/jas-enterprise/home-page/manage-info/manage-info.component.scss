@@ -1,0 +1,67 @@
+.cardLeft {
+  width: 74%; // background: skyblue;
+  background: #ffffff;
+  .application {
+    .title {
+      padding: 5px 20px;
+    }
+    .substance {
+      padding: 20px;
+      overflow: auto;
+      .clickBox {
+        width: 100%;
+        background: #E8ECF0;
+        box-sizing: border-box; // overflow: auto;
+        padding: 20px 0;
+        border: 1px solid #E8ECF0;
+        .enterpriseName {
+          // padding: 16px 0;
+        }
+        .probation {
+          margin: 0 5px;
+          color: #ffffff;
+          position: absolute;
+          top: 0px;
+          left: 66px;
+          span {
+            background-color: rgba(255, 194, 0, 1);
+          }
+        }
+        .formal {
+          margin: 0 5px;
+          color: #ffffff;
+          position: absolute;
+          top: 0px;
+          left: 66px;
+          span {
+            background-color: rgba(255, 194, 0, 1);
+          }
+        }
+        .free {
+          margin: 0 5px;
+          color: #ffffff;
+          position: absolute;
+          top: 0px;
+          left: 66px;
+          span {
+            background-color: rgba(255, 194, 0, 1);
+          }
+        }
+        .createTime {
+          text-align: center;
+        }
+        .manage {
+          .btn {
+            float: right;
+            margin: 0 10px
+          }
+        }
+      }
+      .clickBox:hover {
+        border: 1px solid #80B0E6;
+        cursor: pointer;
+     
+      }
+    }
+  }
+}

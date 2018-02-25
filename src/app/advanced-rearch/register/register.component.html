@@ -1,0 +1,81 @@
+<form nz-form [formGroup]="validateForm" (ngSubmit)="submitForm($event,validateForm.value)">
+    <div nz-form-item nz-row>
+        <div nz-form-label nz-col [nzSpan]="7">
+            <label nz-form-item-required>姓名</label>
+        </div>
+        <div nz-col [nzSpan]="12" nz-form-control [nzValidateStatus]="getFormControl('userName')" nzHasFeedback>
+            <nz-input formControlName="userName" [nzType]="'text'" [nzPlaceHolder]="'请填写真实姓名'" [nzSize]="'large'">
+            </nz-input>
+            <div nz-form-explain *ngIf="getFormControl('userName').dirty&&getFormControl('userName').hasError('required')">姓名不能为空</div>
+            <!--<div nz-form-explain *ngIf="getFormControl('userName').dirty&&getFormControl('userName').hasError('duplicated')">The username is redundant!</div>-->
+            <div nz-form-explain *ngIf="getFormControl('userName').dirty&&getFormControl('userName').pending">Validating...</div>
+        </div>
+    </div>
+    <div nz-form-item nz-row>
+        <div nz-form-label nz-col [nzSpan]="7">
+            <label nz-form-item-required>邮箱</label>
+        </div>
+        <div nz-col [nzSpan]="12" nz-form-control [nzValidateStatus]="getFormControl('email')" nzHasFeedback>
+            <nz-input formControlName="email" [nzPlaceHolder]="'请填写邮箱'" [nzType]="'email'" [nzSize]="'large'">
+            </nz-input>
+            <div nz-form-explain *ngIf="getFormControl('email').dirty&&getFormControl('email').hasError('email')">邮箱格式错误</div>
+            <div nz-form-explain *ngIf="getFormControl('email').dirty&&getFormControl('email').hasError('required')">邮箱不能为空</div>
+        </div>
+    </div>
+
+    <div nz-form-item nz-row>
+        <div nz-col [nzSpan]="7" nz-form-label>
+            <label nz-form-item-required>密码</label>
+        </div>
+        <div>
+            <div nz-col [nzSpan]="12" nz-form-control [nzValidateStatus]="getFormControl('password')" nzHasFeedback>
+                <nz-input formControlName="password" [nzPlaceHolder]="'请设置登录密码'" [nzType]="'password'" [nzSize]="'large'" (ngModelChange)="validateConfirmPassword()">
+                </nz-input>
+                <div nz-form-explain *ngIf="getFormControl('password').dirty&&getFormControl('password').hasError('required')">密码不能为空</div>
+                <div nz-form-explain *ngIf="getFormControl('password').dirty&&getFormControl('password').hasError('password')">密码最少6位</div>
+            </div>
+        </div>
+    </div>
+    <div nz-form-item nz-row>
+        <div nz-col [nzSpan]="7" nz-form-label>
+            <label nz-form-item-required>确认密码</label>
+        </div>
+        <div nz-col [nzSpan]="12" nz-form-control [nzValidateStatus]="getFormControl('passwordConfirmation')" nzHasFeedback>
+            <nz-input formControlName="passwordConfirmation" [nzType]="'password'" [nzPlaceHolder]="'请再次输入密码'" [nzSize]="'large'">
+            </nz-input>
+            <div nz-form-explain *ngIf="getFormControl('passwordConfirmation').dirty&&getFormControl('passwordConfirmation').hasError('required')">确认密码不能为空</div>
+            <div nz-form-explain *ngIf="getFormControl('passwordConfirmation').dirty&&getFormControl('passwordConfirmation').hasError('confirm')">
+                两次输入的密码不一致,请重新输入</div>
+        </div>
+    </div>
+    <div nz-form-item nz-row>
+        <div nz-form-label nz-col [nzSm]="6" [nzXs]="24">
+            <label for="phoneNumber" nz-form-item-required>手机号</label>
+        </div>
+        <div nz-form-control nz-col [nzSm]="14" [nzXs]="24" nzHasFeedback [nzValidateStatus]="getFormControl('phoneNumber')">
+            <nz-input-group [nzSize]="'large'" [nzCompact]="true">
+                <nz-select formControlName="phoneNumberPrefix" style="width: 25%;">
+                    <nz-option [nzLabel]="'+86'" [nzValue]="'+86'"></nz-option>
+                    <nz-option [nzLabel]="'+87'" [nzValue]="'+87'"></nz-option>
+                </nz-select>
+                <input formControlName="phoneNumber" id="'phoneNumber'" nz-input style="width: 75%;">
+            </nz-input-group>
+            <div nz-form-explain *ngIf="getFormControl('phoneNumber').dirty&&getFormControl('phoneNumber').hasError('required')">手机号不能为空</div>
+            <div nz-form-explain *ngIf="getFormControl('phoneNumber').dirty&&getFormControl('phoneNumber').hasError('phoneNumber')">手机格式错误</div>
+        </div>
+    </div>
+    <div nz-form-item nz-row>
+        <div nz-col [nzSpan]="7" nz-form-label>
+            <label nz-form-item-required>企业电话</label>
+        </div>
+        <div>
+            <div nz-col [nzSpan]="12" nz-form-control [nzValidateStatus]="getFormControl('telephoneNumber')" nzHasFeedback>
+                <nz-input formControlName="telephoneNumber" [nzType]="'telephoneNumber'" [nzSize]="'large'">
+                </nz-input>
+                <div nz-form-explain *ngIf="getFormControl('telephoneNumber').dirty&&getFormControl('telephoneNumber').hasError('required')">企业电话不能为空</div>
+                <div nz-form-explain *ngIf="getFormControl('telephoneNumber').dirty&&getFormControl('telephoneNumber').hasError('telephoneNumber')">企业电话格式错误</div>
+            </div>
+        </div>
+    </div>
+
+</form>

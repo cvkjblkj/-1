@@ -1,0 +1,19 @@
+<div class="content">
+    <div class="tab" *ngIf="tab">
+        <ul class="clearfix">
+            <li>
+
+                <a (click)="enterpriseInfo()" [ngClass]='{"active":enterpriseState  && enterpriseState != -1}'>企业信息</a>
+            </li>
+            <li>
+
+                <a (click)="applicationInfo()" [ngClass]='{"active":applicationState  && applicationState != -1}'>应用信息</a>
+            </li>
+        </ul>
+
+    </div>
+    <div class="enterpriseContent">
+        <router-outlet></router-outlet>
+    </div>
+
+</div>

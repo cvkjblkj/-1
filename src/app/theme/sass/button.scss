@@ -1,0 +1,80 @@
+@import "./basic.scss";
+$hover: 24;
+.btn:focus,
+.btn:active:focus,
+.btn.active:focus,
+.btn.focus,
+.btn:active.focus,
+.btn.active.focus {
+    outline: none;
+}
+
+.btn {
+    border-radius: 0;
+    transition: all 0.1s ease;
+    font-size: 12px;
+    padding: 6.5px 14px;
+}
+
+@mixin styleButton($color, $boderColor) {
+    border-color: $boderColor;
+    background-color: $color;
+}
+
+@mixin buttonColor($color, $borderColor) {
+    @include styleButton($color, $borderColor);
+    &.disabled,
+    &[disabled],
+    fieldset[disabled] &,
+    &.disabled:hover,
+    &[disabled]:hover,
+    fieldset[disabled] &:hover,
+    &.disabled:focus,
+    &[disabled]:focus,
+    fieldset[disabled] &:focus,
+    &.disabled.focus,
+    &[disabled].focus,
+    fieldset[disabled] &.focus,
+    &.disabled:active,
+    &[disabled]:active,
+    fieldset[disabled] &:active,
+    &.disabled.active,
+    &[disabled].active,
+    fieldset[disabled] &.active {
+        @include styleButton($color, $borderColor + $hover/2);
+        &:hover {
+            transform: none;
+        }
+    }
+    &:hover,
+    &:focus,
+    &.focus,
+    &:active,
+    &.active {
+        @include styleButton($color, $borderColor - $hover);
+    }
+}
+
+button.btn.btn-primary {
+    @include buttonColor($primary, $primary);
+    &:active,
+    &:target {
+        background-color: $primary-dark;
+    }
+}
+
+button.btn.btn-info {
+    @include buttonColor($info, $info);
+    &:active,
+    &:target {
+        background-color: $info-dark;
+    }
+}
+
+button.btn.btn-cancle {
+    @include buttonColor($cancle, $input-border);
+    &:active,
+    &:target {
+        background-color: $cancle-dark;
+    }
+}

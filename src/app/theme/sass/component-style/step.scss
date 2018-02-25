@@ -1,0 +1,23 @@
+.step {
+    .ant-steps .ant-steps-title {
+        position: relative;
+        left: 40px;
+        top: 16px;
+        background: none;
+        color: #fff !important;
+    }
+    .ant-steps .ant-steps-tail>i {
+        height: 0
+    }
+    .ant-steps .ant-steps-item {
+        margin-right: -63px !important;
+        //   padding:12px 0;
+        line-height: 0
+    }
+    .ant-steps .ant-steps-item.ant-steps-custom .ant-steps-head-inner>.ant-steps-icon {
+        font-size: 26px;
+        height: 26px;
+        width: 100% !important;
+        display: contents !important;
+    }
+}

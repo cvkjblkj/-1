@@ -1,0 +1,63 @@
+<div class="owned-enterprise">
+  <div *ngFor="let item of collection" class="content">
+
+    <div class="designation">
+      {{item.name}}
+    </div>
+    <div class="tacitlyApprove" *ngIf="item.num==1&&!item.num!==3">
+      <span>默认企业</span>
+    </div>
+    <div class="administrators" *ngIf="item.num==2&&!item.num!==3">
+      <span>企业管理员</span>
+    </div>
+    <div class="freeze" *ngIf="item.num==3">
+      <span>已冻结</span>
+    </div>
+    <div class="text">
+      <table class="table">
+        <tr class="table-cell">
+          <td class="table-td">所在部门</td>
+          <td class="table-tr">
+            <span>{{item.department}}</span>
+          </td>
+        </tr>
+        <tr class="table-cell">
+          <td class="table-td">职位</td>
+          <td class="table-tr">
+            <span>{{item.position}}</span>
+          </td>
+        </tr>
+        <tr class="table-cell">
+          <td class="table-td">加入时间</td>
+          <td class="table-tr">
+            <span class="spanClick">
+              <span>{{item.time}}</span>
+            </span>
+          </td>
+        </tr>
+        <tr class="table-cell">
+          <td class="table-td">状态</td>
+          <td class="table-tr">
+            <span>{{item.status}}</span>
+          </td>
+        </tr>
+
+
+      </table>
+    </div>
+    <div class="btnBox">
+      <button *ngIf="item.num==1" class="btn btn-message" (click)="handle(item)">取消默认</button>
+      <button *ngIf="item.num!==1" class="btn btn-message" (click)="setOk(item)">设为默认</button>
+      <button class="btn btn-message" (click)="signout(item)">退出企业</button>
+    </div>
+
+  </div>
+
+</div>
+
+<nz-modal [nzVisible]="isVisible" [nzTitle]="'退出企业'" [nzContent]="modalContent" (nzOnCancel)="handleCancel($event)" (nzOnOk)="handleOk($event)"
+  [nzConfirmLoading]="isConfirmLoading">
+  <ng-template #modalContent>
+    <p>您确定要退出{{enterpriseName}}吗</p>
+  </ng-template>
+</nz-modal>

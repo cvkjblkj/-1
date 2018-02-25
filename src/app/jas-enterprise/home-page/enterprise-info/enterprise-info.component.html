@@ -1,0 +1,43 @@
+<div class="cardLeft fl">
+  <div class="title">
+    企业信息
+  </div>
+  <div  class="col-lg-12 col-md-12 col-sm-12 col-xs-12 substance">
+    <div class="imgCard col-lg-2 col-md-2 col-sm-2 col-xs-2">
+      <div>
+
+      </div>
+    </div>
+    <!-- class=" fl" -->
+    <div   class=" textCont col-lg-10 col-md-10 col-sm-10 col-xs-10">
+      <div class="head">
+        <div class="enterpriseName fl">
+          天龙科技有限公司
+        </div>
+        <div class="certified fl" *ngIf="Property">
+          <span>已认证</span>
+        </div>
+        <div class="uncertified fl">
+          <span>未认证</span>
+        </div>
+        <div class="immediate fl">
+          <button class="btn btn-message" (click)="immediately()">立即认证</button>
+        </div>
+      </div>
+      <div class="content">
+        <span class="fl">管理员</span>
+        <span class="fl">张三</span>
+      </div>
+      <div class="foot">
+        <div>
+          <span class="fl">总人数</span>
+          <span class="fl">30</span>
+        </div>
+        <div>
+          <span>待审核人数</span>
+          <span class="btn btn-message" (click)='examine()'>5</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

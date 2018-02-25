@@ -1,0 +1,129 @@
+<nz-tabset (nzSelectChange)="selectChangeTab($event)">
+  <nz-tab *ngFor="let tab of tabs;let i = index;">
+    <ng-template #nzTabHeading>
+      {{tab.name}}
+    </ng-template>
+    <div class="content">
+      <div class="toobar clearfix">
+        <div class="search fl clearfix">
+          <input type="search fl" class="input-search" placeholder="输入关键字搜索" [(ngModel)]="_value">
+          <i class="anticon anticon-search ant-input-search-icon icon-btn-search"></i>
+          <button class="btn btn-info fr">搜索</button>
+        </div>
+        <button class="btn btn-cancle fr" (click)="refresh()">
+          <i class="iconfont icon-shuaxin"></i>
+          刷新</button>
+      </div>
+      <nz-table #nzTable [nzDataSource]="data" [nzPageSize]="10" [nzShowSizeChanger]="true">
+        <thead nz-thead>
+          <tr>
+            <th nz-th *ngFor="let itemTh of thList"><span>{{itemTh.text}}</span></th>
+          </tr>
+        </thead>
+        <tbody nz-tbody>
+          <tr nz-tbody-tr *ngFor="let data of nzTable.data">
+            <td nz-td>
+              <a>{{data.name}}</a>
+            </td>
+            <td nz-td>{{data.age}}</td>
+            <td nz-td>{{data.address}}</td>
+            <td nz-td *ngIf="thList.length<5">
+              <span class="btn-span" (click)="authed()">审核</span>
+            </td>
+          </tr>
+        </tbody>
+      </nz-table>
+
+    </div>
+  </nz-tab>
+</nz-tabset>
+
+<!-- 审核弹窗 -->
+<nz-modal [nzVisible]="auditDialogBox" [nzTitle]="title" [nzContent]="modalContentUser" [nzWidth]="" (nzOnCancel)="cancelDialog($event)" (nzOnOk)="confirm()" [nzMaskClosable]="false">
+  <ng-template #modalContentUser>
+    <form nz-form [formGroup]="auditForm" class="user-from-style" (click)="this.showUpperSection=false">
+      <div nz-form-item nz-row>
+        <div nz-form-label nz-col [nzSpan]="6">
+          <label nz-form-item-required>审核结果</label>
+        </div>
+        <div nz-col [nzSpan]="11" nz-form-control [nzValidateStatus]="auditForm.controls['modifyResult']">
+          <nz-select #auditRelselect [nzSize]="'large'" [(ngModel)]="selectedOption" formControlName="modifyResult" [nzPlaceHolder]="'请选择'">
+            <nz-option [nzLabel]="'通过'" [nzValue]="'pass'"></nz-option>
+            <nz-option [nzLabel]="'驳回'" [nzValue]="'reject'"></nz-option>
+          </nz-select>
+        </div>
+
+        <div nz-form-explain *ngIf="auditForm.controls.modifyResult.dirty && auditForm.controls.modifyResult.hasError('required')">
+          审核结果不能为空
+        </div>
+      </div>
+      <div nz-form-item nz-row *ngIf="selectedOption == 'pass' || !selectedOption">
+        <div nz-form-label nz-col [nzSpan]="6">
+          <label>审核意见</label>
+        </div>
+        <div nz-col [nzSpan]="11" nz-form-control>
+          <nz-input formControlName="modifyPro" nzType="textarea" [nzRows]="'4'"></nz-input>
+        </div>
+
+      </div>
+
+      <div nz-form-item nz-row *ngIf="selectedOption == 'reject'">
+        <div nz-form-label nz-col [nzSpan]="6">
+          <label nz-form-item-required>审核意见</label>
+        </div>
+        <div nz-col [nzSpan]="11" nz-form-control [nzValidateStatus]="auditForm.controls['modifyPro']">
+          <nz-input formControlName="modifyPro" nzType="textarea" [nzRows]="'4'"></nz-input>
+        </div>
+        <div nz-form-explain *ngIf="selectedOption == 'reject' && auditForm.controls['modifyPro'].dirty && auditForm.controls['modifyPro'].hasError('required')">
+          审核意见不能为空
+        </div>
+      </div>
+
+      <!-- [nzValidateStatus]="auditForm.controls['department']" -->
+      <div nz-form-item nz-row *ngIf="selectedOption == 'pass'">
+        <div nz-form-label nz-col [nzSpan]="6">
+          <label nz-form-item-required>部门</label>
+        </div>
+        <div nz-col [nzSpan]="11" nz-form-control (click)="commonService.stopBubble($event)" [nzValidateStatus]="auditForm.controls['department']">
+          <nz-input formControlName="department" [nzSize]="'large'" [(ngModel)]='auditForm.value.department' [nzReadonly]="true" (click)="this.showUpperSection = !this.showUpperSection" [nzPlaceHolder]="'点击选择部门'">
+          </nz-input>
+          <!--部门下拉列表-->
+          <div class="dropDown" [hidden]="!showUpperSection">
+            <tree-root [nodes]="nodes" [options]="options" (activate)="treeSelectClick($event)" #tree>
+              <ng-template #treeNodeWrapperTemplate let-node let-index="index">
+                <div [class.section-list-row]="node.data.name == this.auditForm.value.department" (click)="node.mouseAction('click', $event)">
+                  <div class="node-wrapper" [style.padding-left]="node.getNodePadding()">
+                    <tree-node-expander [node]="node"></tree-node-expander>
+                    <div (click)="node.mouseAction('click', $event)" (dblclick)="node.mouseAction('dblClick', $event)" (contextmenu)="node.mouseAction('contextMenu', $event)" (treeDrop)="node.onDrop($event)" [treeAllowDrop]="node.allowDrop" [treeDrag]="node" [treeDragEnabled]="node.allowDrag()">
+                      <tree-node-content [node]="node" [index]="index"></tree-node-content>
+                    </div>
+                  </div>
+                </div>
+              </ng-template>
+            </tree-root>
+          </div>
+        </div>
+        <div nz-form-explain *ngIf="auditForm.controls['department'].dirty && auditForm.controls['department'].hasError('required')">
+          部门不能为空
+        </div>
+      </div>
+      <!--职位-->
+      <div nz-form-item nz-row *ngIf="selectedOption == 'pass'">
+        <div nz-form-label nz-col [nzSpan]="6"><label>职位</label></div>
+        <div nz-col [nzSpan]="11" nz-form-control>
+          <nz-input formControlName="job" [nzSize]="'large'"></nz-input>
+        </div>
+      </div>
+
+    </form>
+  </ng-template>
+
+  <!-- <ng-template #modalFooter>
+      <button nz-button [nzType]="'default'" [nzSize]="'large'" (click)="cancelDialog($event)">
+        返 回
+      </button>
+      <button nz-button [nzType]="'primary'" [nzSize]="'large'" (click)="confirm($event)" [nzLoading]="isConfirmLoading">
+        提 交
+      </button>
+    </ng-template> -->
+</nz-modal>

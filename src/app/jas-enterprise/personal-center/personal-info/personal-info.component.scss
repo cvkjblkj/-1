@@ -1,0 +1,117 @@
+.personal-info {
+  width: 90%;
+  position: relative;
+  top: 30px;
+  left: 70px;
+  margin-bottom: 30px;
+  .component {
+    padding: 15px;
+    border: 1px solid #e5e5e5;
+    border-radius: 10px;
+    .header {
+      .text h3 {
+        color: #666666
+      }
+      span {
+        display: inline-block
+      }
+    }
+    .content {
+      width: 100%;
+      padding: 40px 0;
+      overflow: auto;
+      .leftContent {
+        width: 20%;
+        float: left
+      }
+      .rightContent {
+        width: 80%;
+        float: right;
+        .rightTable {
+          .table-td {
+            text-align: right;
+            padding: 15px 10px
+          }
+          .table-tr {
+            padding: 0 30px;
+            .btn-message {
+              margin: 0 10px
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.ant-radio-group {
+  padding: 6px 0;
+}
+
+.ant-form-item {
+  margin-bottom: 15px;
+}
+
+// .ant-input-group {
+//     padding: 10px 0px 10px 60px;
+// }
+.original {
+  .phoneNumber {
+    .ant-input-group {
+      padding: 10px 3px 10px 60px;
+      input {
+        height: 32px;
+        border-radius: 0
+      }
+    }
+  }
+  .identifying {
+    .btn {
+      display: inline-block;
+      width: 35%;
+      padding: 6.5px 14px;
+      border-radius: 0
+    }
+    .ant-input-group {
+      height: 32px;
+      padding: 10px 0px 10px 60px;
+      input {
+        height: 32px;
+        border-radius: 0
+      }
+    }
+  }
+}
+
+.nowPhone {
+  .btn {
+    display: inline-block;
+    width: 35%;
+    padding: 6.5px 14px;
+    border-radius: 0
+  }
+  .phonedateForm {
+    left: 31px;
+    border-radius: 0;
+    .ant-input-group {
+      left: 26px;
+      input {
+        height: 32px;
+        border-radius: 0
+      }
+    }
+    .ant-form-explain {
+      position: relative;
+      left: 20;
+    }
+  }
+  .nowidentifying {
+    .ant-input-group {
+      padding: 10px 9px 10px 57px;
+      input {
+        height: 32px;
+        border-radius: 0
+      }
+    }
+  }
+}

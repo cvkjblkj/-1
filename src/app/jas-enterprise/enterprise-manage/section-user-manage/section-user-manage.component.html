@@ -1,0 +1,376 @@
+<div class="section-user-manage">
+  <!--部门列表部分-->
+  <div class="section-manage" #sectionManage>
+    <!--部门搜索框-->
+    <div class="section-search">
+      <input type="text" placeholder="输入 回车搜索" [(ngModel)]="searchSection" (keyup)="filterNodes(filter.value)" #filter>
+      <span *ngIf="searchSection != ''" (click)="clearSectionSearchInput()">X</span>
+      <i class="anticon anticon-search ant-input-search-icon icon-btn-search"></i>
+    </div>
+    <!--部门操作-->
+    <div class="clearfix section-option">
+      <div *ngIf="!showDepartmentDIV">
+        <div class="fr" (click)="sectionSortBtn()"> 排序</div>
+        <div class="fr" (click)="deleteSectionBtn()" *ngIf="sectionSelectedNode.data.name !== this.nodes[0].name"> 删除</div>
+        <div class="fr" (click)="editDialogBtn()" *ngIf="sectionSelectedNode.data.name !== this.nodes[0].name"> 编辑</div>
+        <div class="fr" (click)="addDialogBtn()"> 添加</div>
+      </div>
+      <!--如果点击了排序按钮，则显示下面的 保存与取消按钮-->
+      <div *ngIf="showDepartmentDIV">
+        <div class="fr" (click)="cancelSortBtn()"> 取消</div>
+        <div class="fr" (click)="saveDepartmentSortBtn()"> 保存</div>
+      </div>
+    </div>
+    <!--部门列表-->
+    <div class="section-list" *ngIf="refreshSectionList">
+      <!--(moveNode)="onMoveNode($event)": 在拖拽树节点的时候出发的事件-->
+      <tree-root [nodes]="nodes" [options]="options" (activate)="sectionListSelectedEvent($event)" #sectionTreeOne>
+        <ng-template #treeNodeWrapperTemplate let-node let-index="index">
+          <div [class.section-list-row]="node.data.name == sectionSelectedNode.data.name"
+               (click)="node.mouseAction('click', $event)">
+            <div class="node-wrapper" [style.padding-left]="node.getNodePadding()">
+              <tree-node-expander [node]="node"></tree-node-expander>
+              <div (click)="node.mouseAction('click', $event)"
+                   (dblclick)="node.mouseAction('dblClick', $event)"
+                   (contextmenu)="node.mouseAction('contextMenu', $event)"
+                   (treeDrop)="node.onDrop($event)"
+                   [treeAllowDrop]="node.allowDrop" [treeDrag]="node" [treeDragEnabled]="node.allowDrag()">
+                <tree-node-content [node]="node" [index]="index"></tree-node-content>
+              </div>
+            </div>
+          </div>
+        </ng-template>
+      </tree-root>
+    </div>
+    <!--这里主要是解决部门列表刷新问题，只能重绘div元素了,后期有时间在做其他简化的研究-->
+    <div class="section-list" *ngIf="!refreshSectionList">
+      <tree-root [nodes]="nodes" [options]="options" (activate)="sectionListSelectedEvent($event)" #sectionTreeTwo>
+        <ng-template #treeNodeWrapperTemplate let-node let-index=" index">
+          <div [class.section-list-row]="node.data.name == sectionSelectedNode.data.name"
+               (click)="node.mouseAction('click', $event)">
+            <div class="node-wrapper" [style.padding-left]="node.getNodePadding()">
+              <tree-node-expander [node]="node"></tree-node-expander>
+              <div
+                (click)="node.mouseAction('click', $event)"
+                (dblclick)="node.mouseAction('dblClick', $event)"
+                (contextmenu)="node.mouseAction('contextMenu', $event)"
+                (treeDrop)="node.onDrop($event)"
+                [treeAllowDrop]="node.allowDrop" [treeDrag]="node" [treeDragEnabled]="node.allowDrag()">
+                <tree-node-content [node]="node" [index]="index"></tree-node-content>
+              </div>
+            </div>
+          </div>
+        </ng-template>
+      </tree-root>
+    </div>
+  </div>
+  
+  <!--用户列表部分-->
+  <div class="user-manage" #userManage>
+    <!--用户搜索选项部分-->
+    <div class="select-user-option clearfix">
+      <!--用户状态下拉框-->
+      <div class="fl">
+        <nz-select style="width: 200px;" [(ngModel)]="userStatus" (nzOpenChange)="changUserStatus($event)" [nzSize]="">
+          <nz-option
+            *ngFor="let userOption of userStatusList"
+            [nzLabel]="userOption.label"
+            [nzValue]="userOption.value"
+            [nzDisabled]="userOption.disabled">
+          </nz-option>
+        </nz-select>
+      </div>
+      <!--用户搜索输入框-->
+      <div class="search fl clearfix">
+        <!--搜索输入框在全局样式中-->
+        <input type="search fl" class="input-search" placeholder="输入关键字搜索" [(ngModel)]="_value">
+        <i class="anticon anticon-search ant-input-search-icon icon-btn-search"></i>
+        <button class="btn btn-info fr">搜索</button>
+      </div>
+      
+      <div class="fl">
+        <label nz-checkbox [(ngModel)]="checkedBox" (ngModelChange)="getUserListInfo()">
+          <span>部门及以下</span>
+        </label>
+      </div>
+    </div>
+    <!--添加用户按钮 和刷新行-->
+    <div class="clearfix">
+      <!--添加用户按钮-->
+      <button class="btn btn-info fl" (click)="addUserDialogBtn()">
+        <i class="ui-button-icon-left ui-c fa fa-fw fa-plus"></i>
+        添加用户
+      </button>
+      <button class="btn btn-cancle fr" (click)="reloadUserIndfo()">
+        <!--http://www.fontawesome.com.cn/icons/refresh/   字体图标-->
+        <i class="fa fa-refresh" aria-hidden="true"></i>
+        刷新
+      </button>
+    </div>
+    <!--用户列表-->
+    <div>
+      <nz-table #nzTable [nzDataSource]="userData" [nzIsPagination]="true" [nzPageSize]="5">
+        <thead nz-thead>
+        <tr>
+          <th nz-th [nzWidth]="'150px'"><span>姓名</span></th>
+          <th nz-th [nzWidth]="'150px'"><span>手机号</span></th>
+          <th nz-th><span>部门</span></th>
+          <th nz-th><span>职位</span></th>
+          <th nz-th><span>状态</span></th>
+          <th nz-th style="text-align: right;"><span>操作</span></th>
+        </tr>
+        </thead>
+        <tbody nz-tbody>
+        <tr nz-tbody-tr *ngFor="let data of nzTable.data">
+          <td nz-td>{{data.userName}}</td>
+          <td nz-td>{{data.mobileNum}}</td>
+          <td nz-td>{{data.department}}</td>
+          <td nz-td>{{data.job}}</td>
+          <td nz-td>{{data.status}}</td>
+          <td nz-td class="user-list-option">
+            <div>
+              <span class="user-option-btn" (click)="showUserInfoModal(title, content, footer, data)">查看</span>
+              <span class="user-option-btn" (click)="editUserDialogBtn(data)">编辑</span>
+              <span (click)="deleteUserInfo(data)">移除</span>
+            </div>
+            <div>
+              <span class="user-option-btn" *ngIf="data.status === '未激活'" (click)="sendActivationMessage()">
+                发送激活短信
+              </span>
+              <span *ngIf="data.status !== '已冻结'" (click)="freezesUser(data)">冻结</span>
+              <span *ngIf="data.status === '已冻结'" (click)="freeUser(data)">解冻</span>
+            </div>
+          </td>
+        </tr>
+        </tbody>
+      </nz-table>
+    </div>
+  </div>
+
+</div>
+
+
+<!--添加部门弹窗-->
+<!--nzMaskClosable: 点击弹窗其他部分是否关闭弹窗-->
+<nz-modal [nzVisible]="addDialogBox" [nzTitle]="dialogBoxParam.title" [nzContent]="departmentDialog" [nzWidth]=""
+          (nzOnCancel)="cancelAddSection($event)" (nzOnOk)="dialogBoxParam.confirm(this)" [nzMaskClosable]="false"
+          (click)="dialogBlankEvent()">
+  <ng-template #departmentDialog>
+    <form nz-form [formGroup]="addSectionForm">
+      <div nz-form-item nz-row>
+        <div nz-form-label nz-col [nzSpan]="6">
+          <label nz-form-item-required>部门名称</label>
+        </div>
+        <!--nzHasFeedback: 输入校验的提示-->
+        <!--nzType: input 类型，同原生 input 标签的 type 属性。另外提供 nzType="textarea"-->
+        <!--nzValidateStatus： 直接定义表单的返回状态-->
+        <div nz-col [nzSpan]="11" nz-form-control [nzValidateStatus]="addSectionForm.controls['name']">
+          <nz-input formControlName="name" [nzPlaceHolder]="'请输入名称'" [nzType]="'text'" [nzSize]="'large'">
+            <!--[(ngModel)]='addSectionForm.value.name'-->
+          </nz-input>
+        </div>
+        <div nz-form-explain *ngIf="addSectionForm.controls['name'].dirty&&addSectionForm.controls['name'].hasError('name')">
+          格式不对
+        </div>
+        <div nz-form-explain *ngIf="addSectionForm.controls['name'].dirty&&addSectionForm.controls['name'].hasError('required')">
+          请输入部门名称
+        </div>
+        <div style="margin: 40px 0  0 120px;">中文、字母、数字、“-”、“_”，1-20个字符</div>
+      </div>
+      <div nz-form-item nz-row>
+        <div nz-form-label nz-col [nzSpan]="6">
+          <label nz-form-item-required>上级部门</label>
+        </div>
+        <div nz-col [nzSpan]="11" nz-form-control [nzValidateStatus]="addSectionForm.controls['upperSection']"
+             (click)="commonService.stopBubble($event)">
+          <nz-input formControlName="upperSection" [nzPlaceHolder]="'请选择上级部门'" [nzSize]="'large'"
+                    [nzReadonly]="true" (click)="this.showUpperSection = !this.showUpperSection"
+                    [(ngModel)]='addSectionForm.value.upperSection'>
+          </nz-input>
+          <!--如果是编辑部门弹窗这个ID才有用，否则用初始化的就可以了，这个后期有API的时候就可以删除了-->
+          <nz-input *ngIf="dialogBoxParam.title == '编辑部门'" [hidden]="true" formControlName="id" [(ngModel)]='sectionId'>
+          </nz-input>
+          <!--部门下拉列表-->
+          <div class="dropDown" [hidden]="!showUpperSection">
+            <tree-root [nodes]="nodes" [options]="options" (activate)="addUpperSectionClick($event, 'department')" #tree>
+              <ng-template #treeNodeWrapperTemplate let-node let-index="index">
+                <div [class.section-list-row]="node.data.name == this.addSectionForm.value.upperSection"
+                     (click)="node.mouseAction('click', $event)">
+                  <div class="node-wrapper" [style.padding-left]="node.getNodePadding()">
+                    <tree-node-expander [node]="node"></tree-node-expander>
+                    <div
+                      (click)="node.mouseAction('click', $event)"
+                      (dblclick)="node.mouseAction('dblClick', $event)"
+                      (contextmenu)="node.mouseAction('contextMenu', $event)"
+                      (treeDrop)="node.onDrop($event)"
+                      [treeAllowDrop]="node.allowDrop" [treeDrag]="node" [treeDragEnabled]="node.allowDrag()">
+                      <tree-node-content [node]="node" [index]="index"></tree-node-content>
+                    </div>
+                  </div>
+                </div>
+              </ng-template>
+            </tree-root>
+          </div>
+          <!--占位，用于给部门列表留出空间-->
+          <div style="margin-bottom: 75px;"></div>
+        </div>
+      </div>
+    </form>
+    <div *ngIf="this.addSectionForm.value.verify">还有必填项没写，请填写。</div>
+  </ng-template>
+</nz-modal>
+
+<!--添加用户、编辑用户弹窗-->
+<nz-modal [nzVisible]="addUserDialogBox" [nzTitle]="dialogBoxParam.title" [nzContent]="modalContentUser" [nzWidth]=""
+          (nzOnCancel)="cancelAddUserDialog($event)" (nzOnOk)="dialogBoxParam.confirm(this)" [nzMaskClosable]="false">
+  <ng-template #modalContentUser>
+    <form nz-form [formGroup]="addUserForm" class="user-from-style">
+      <!--姓名-->
+      <div nz-form-item nz-row>
+        <div nz-form-label nz-col [nzSpan]="6"><label nz-form-item-required>姓名</label></div>
+        <div nz-col [nzSpan]="11" nz-form-control [nzValidateStatus]="addUserForm.controls['name']">
+          <nz-input formControlName="name" [nzSize]="'large'"></nz-input>
+        </div>
+        <div nz-form-explain
+             *ngIf="addUserForm.controls['name'].dirty&&addUserForm.controls['name'].hasError('name')">
+          输入的姓名格式不对
+        </div>
+        <div nz-form-explain
+             *ngIf="addUserForm.controls['name'].dirty&&addUserForm.controls['name'].hasError('required')">
+          姓名不能为空
+        </div>
+        <div style="margin: 40px 0  0 120px;">中文、字母、数字、“-”、“_”，1-20个字符</div>
+      </div>
+      <!--手机号-->
+      <div nz-form-item nz-row>
+        <div nz-form-label nz-col [nzSpan]="6"><label nz-form-item-required>手机号</label></div>
+        <div nz-col [nzSpan]="11" nz-form-control [nzValidateStatus]="addUserForm.controls['mobileNum']">
+          <nz-input formControlName="mobileNum" [nzSize]="'large'"></nz-input>
+        </div>
+        <div nz-form-explain *ngIf="addUserForm.controls['mobileNum'].dirty&&addUserForm.controls['mobileNum'].hasError('mobileNum')">
+          手机号码格式不对
+        </div>
+        <div nz-form-explain *ngIf="addUserForm.controls['mobileNum'].dirty&&addUserForm.controls['mobileNum'].hasError('required')">
+          手机号不能为空
+        </div>
+      </div>
+      <!--性别-->
+      <div nz-form-item nz-row>
+        <div nz-form-label nz-col [nzSpan]="6"><label>性别</label></div>
+        <div nz-col [nzSpan]="11" nz-form-control [nzValidateStatus]="addUserForm.controls['sex']">
+          <nz-radio-group formControlName="sex" [nzSize]="'large'" [(ngModel)]="radioValue">
+            <label nz-radio [nzValue]="'A'"><span>男</span></label>
+            <label nz-radio [nzValue]="'B'"><span>女</span></label>
+          </nz-radio-group>
+        </div>
+      </div>
+      <!--部门-->
+      <div nz-form-item nz-row>
+        <div nz-form-label nz-col [nzSpan]="6"><label nz-form-item-required>部门</label></div>
+        <div nz-col [nzSpan]="11" nz-form-control [nzValidateStatus]="addUserForm.controls['department']"
+             (click)="commonService.stopBubble($event)">
+          <nz-input  formControlName="department" [nzSize]="'large'" [(ngModel)]='addUserForm.value.department'
+                    [nzReadonly]="true" (click)="this.showUpperSection = !this.showUpperSection"
+                     [nzPlaceHolder]="'点击选择部门'">
+          </nz-input>
+          <!--部门下拉列表-->
+          <div class="dropDown" [hidden]="!showUpperSection">
+            <tree-root [nodes]="nodes" [options]="options" (activate)="addUpperSectionClick($event, 'user')" #tree>
+              <ng-template #treeNodeWrapperTemplate let-node let-index="index">
+                <div [class.section-list-row]="node.data.name == this.addUserForm.value.department"
+                     (click)="node.mouseAction('click', $event)">
+                  <div class="node-wrapper" [style.padding-left]="node.getNodePadding()">
+                    <tree-node-expander [node]="node"></tree-node-expander>
+                    <div
+                      (click)="node.mouseAction('click', $event)"
+                      (dblclick)="node.mouseAction('dblClick', $event)"
+                      (contextmenu)="node.mouseAction('contextMenu', $event)"
+                      (treeDrop)="node.onDrop($event)"
+                      [treeAllowDrop]="node.allowDrop" [treeDrag]="node" [treeDragEnabled]="node.allowDrag()">
+                      <tree-node-content [node]="node" [index]="index"></tree-node-content>
+                    </div>
+                  </div>
+                </div>
+              </ng-template>
+            </tree-root>
+          </div>
+        </div>
+      </div>
+      <!--职位-->
+      <div nz-form-item nz-row>
+        <div nz-form-label nz-col [nzSpan]="6"><label>职位</label></div>
+        <div nz-col [nzSpan]="11" nz-form-control [nzValidateStatus]="addUserForm.controls['job']">
+          <nz-input formControlName="job" [nzSize]="'large'"></nz-input>
+          <span nz-form-explain *ngIf="addUserForm.controls['job'].dirty&&addUserForm.controls['job'].hasError('job')">
+            职位名称格式不对
+          </span>
+        </div>
+      </div>
+      <!--邮箱-->
+      <div nz-form-item nz-row>
+        <div nz-form-label nz-col [nzSpan]="6"><label>邮箱</label></div>
+        <div nz-col [nzSpan]="11" nz-form-control [nzValidateStatus]="addUserForm.controls['email']">
+          <nz-input formControlName="email" [nzSize]="'large'"></nz-input>
+          <span nz-form-explain *ngIf="addUserForm.controls.email.dirty&&addUserForm.controls.email.hasError('email')">
+            邮箱格式不对
+          </span>
+        </div>
+      </div>
+    </form>
+    <div *ngIf="this.addUserForm.value.verify" style="color: red; margin-left: 100px">还有必填项没写，请填写。</div>
+  </ng-template>
+</nz-modal>
+
+<!--查看用户信息弹窗-->
+<div>
+  <!--自定义的弹窗-->
+  <!--标题 上面的提示-->
+  <ng-template #title>
+    <span>用户详情</span>
+  </ng-template>
+  <!--内容 中间内容部分-->
+  <ng-template #content>
+    <div>
+      <table style="table-layout:fixed" border class="table-view">
+        <tr>
+          <td>姓名</td>
+          <td>{{userInfo?.userName}}</td>
+          <td>手机号</td>
+          <td>{{userInfo?.mobileNum}}</td>
+        </tr>
+        <tr>
+          <td>部门</td>
+          <td>{{userInfo?.department}}</td>
+          <td>职位</td>
+          <td>{{userInfo?.job}}</td>
+        </tr>
+        <tr>
+          <td>邮箱</td>
+          <td>{{userInfo?.email}}</td>
+          <td>状态</td>
+          <td>{{userInfo?.status}}</td>
+        </tr>
+        <tr>
+          <td>性别</td>
+          <td>{{userInfo?.sex}}</td>
+          <td>年龄</td>
+          <td>{{userInfo?.age}}</td>
+        </tr>
+        <tr>
+          <td>QQ</td>
+          <td>{{userInfo?.QQ}}</td>
+          <td>微信</td>
+          <td>{{userInfo?.wechat}}</td>
+        </tr>
+      </table>
+    </div>
+  </ng-template>
+  <!--确定按钮部分-->
+  <ng-template #footer>
+    <div>
+      <button nz-button [nzType]="'primary'" [nzSize]="'large'" (click)="handleOk($event)">
+        确 定
+      </button>
+    </div>
+  </ng-template>
+</div>

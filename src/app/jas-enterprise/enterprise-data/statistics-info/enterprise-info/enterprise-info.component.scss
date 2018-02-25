@@ -1,0 +1,53 @@
+.enterpriseContent {
+  clear: both;
+  .userSituation {
+    border: 1px solid #e5e5e5;
+    margin: 5px;
+    padding: 5px;
+    .enterpriseTable {
+      width: 100%;
+      .table-cell {
+        float: left;
+        width: 25%;
+        padding: 32px;
+        .table-tr {
+          padding: 0 5px;
+          .spanClick {
+            color: #00A1E9;
+            cursor: pointer;
+          }
+        }
+      }
+    }
+  }
+  .chartContent {
+    border: 1px solid #e5e5e5;
+    min-height: 360px;
+    margin: 10px 5px;
+    padding: 9px;
+    .login {
+      display: inline-block;
+    }
+    .dateFilter {
+      width: 35%;
+      display: inline-block;
+      float: right;
+      position: relative;
+    }
+    .charts {
+      height: 300px;
+      width: 50%;
+      position: relative;
+      left: 20%
+    }
+  }
+  .ant-modal-footer button {
+    border-radius: none
+  } // .clickMessage {
+  //     color: #00A1E9;
+  //     cursor: pointer;
+  // }
+  .btn-message:hover {
+    border-bottom: 1px solid #00A1E9
+  }
+}

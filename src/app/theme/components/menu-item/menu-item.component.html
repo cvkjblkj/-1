@@ -1,0 +1,43 @@
+<div class="menu-item" [class.menu-item-small]="isCollapsed">
+  <div (click)="this.toggleCollapsed()" class="menu-collapsed-btn">
+    <i class="anticon"
+    [class.anticon-menu-unfold]="isCollapsed" [class.anticon-menu-fold]="!isCollapsed">
+    </i>
+  </div>
+  <ul nz-menu [nzMode]="'inline'">
+    <div *ngFor="let item of menuContent">
+      <li  nz-menu-item *ngIf="!item.child" (click)="menuClick(item.url)" [nzSelected]="browserURL.indexOf(item.url) != -1">
+        <span title >
+          <i class="anticon anticon-mail menu-icon"></i>
+          <span>{{item.name}}</span>
+          <!--<a routerLink="{{item.url}}" routerLinkActive='active'>{{item.name}}</a>-->
+        </span>
+      </li>
+      <li nz-submenu *ngIf="item.child && item.child.length != 0" [nzOpen]="item.nzOpen"
+          (click)="secondLevelClick(item)">
+        <span title [class.menu-submenu-title]="isCollapsed" [class.menu-submenu-title2]="item.nzOpen">
+          <i *ngIf="!isCollapsed" class="anticon anticon-appstore menu-icon"></i>
+          <span>{{item.name}}</span>
+        </span>
+        <!--阻止事件冒泡-->
+        <ul (click)="commonService.stopBubble($event)">
+          <div *ngFor="let subItem of item.child">
+            <li nz-menu-item *ngIf="!subItem.child" (click)="menuClick(subItem.url)" class="menu-li"
+                [nzSelected]="browserURL.indexOf(subItem.url) != -1">
+              <i class="anticon anticon-appstore menu-icon"></i> {{subItem.name}}
+            </li>
+            <!--<li nz-submenu *ngIf="subItem.child && subItem.child.length != 0" [nzOpen]="subItem.nzOpen">-->
+              <!--<span title>{{subItem.name}}</span>-->
+              <!--<ul>-->
+                <!--<li nz-menu-item *ngFor="let sub of subItem.child" (click)="menuClick(sub.url)"-->
+                    <!--[nzSelected]="browserURL.indexOf(sub.url) != -1">{{sub.name}}-->
+                <!--</li>-->
+              <!--</ul>-->
+            <!--</li>-->
+          </div>
+        </ul>
+      </li>
+    </div>
+  </ul>
+</div>
+

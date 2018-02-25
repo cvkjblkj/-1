@@ -1,0 +1,108 @@
+/* slider */
+
+#slider {
+  width: 400px;
+  overflow: hidden;
+  padding: 20px 15px;
+  position: relative;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.scroll {
+  width: 336px;
+  height: 200px;
+  margin: 0 auto;
+  overflow: hidden;
+  position: relative;
+}
+
+.scrollContainer {
+  position: relative;
+  width: 1815px;
+  left: 0px;
+}
+
+.scrollContainer .current .inside {
+  width: 115px;
+  height: 144px;
+}
+
+.scrollContainer .panel-logo {
+  width: 85px;
+  height: 115px;
+  float: left;
+  margin-right: 25px;
+  display: inline;
+}
+
+.panel-logo .inside {
+  display: block;
+  position: relative;
+}
+
+.inside img {
+  height: 100%;
+  width: 100%;
+}
+
+// .scroll li .inside span {
+//   width: 100px;
+//   height: 37px;
+//   line-height: 37px;
+//   display: none;
+//   position: absolute;
+//   bottom: -17px;
+//   left: 16px;
+//   background-color: #c69;
+//   font-size: 14px;
+//   color: #FFF;
+//   text-align: center;
+// }
+// .scroll li span {
+//   width: 100px;
+//   height: 37px;
+//   line-height: 37px;
+//   display: none;
+//   position: absolute;
+//   /* bottom: -17px; */
+//   left: 16px;
+//   background-color: #c69;
+//   font-size: 14px;
+//   color: #FFF;
+//   text-align: center;
+// }
+// .scroll li.current span {
+//   display: block;
+// }
+// .scroll li.current .inside span {
+//   display: block;
+// }
+.btnMode a.btn {
+  background: url('./../../../../assets/images/index.png') no-repeat;
+}
+
+.btnMode a.btn {
+  width: 20px;
+  height: 39px;
+  position: absolute;
+  top: 46px;
+}
+
+.btnMode a.prev {
+  left: 0;
+  background-position: 0 -61px;
+}
+
+.btnMode a.prev:hover {
+  background-position: 0 -102px;
+}
+
+.btnMode a.next {
+  right: 0;
+  background-position: -50px -61px;
+}
+
+.btnMode a.next:hover {
+  background-position: -50px -102px;
+}

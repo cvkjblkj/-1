@@ -1,0 +1,117 @@
+.section-user-manage {
+  width: 100%;
+  overflow: hidden;         // 清除父子元素 margin合并
+  border: 14px solid #dbdcdf;
+  position: relative;
+  // 部门列表
+  .section-manage {
+    background-color: #FFFFFF;
+    position: absolute;
+    width: 220px;
+  }
+  // 用户管理部分
+  .user-manage {
+    margin-left: 220px;
+    background-color: #FFFFFF;
+    border-left: 1px solid #dbdcdf;
+    overflow: hidden; // 清除父子元素 margin合并
+  }
+}
+
+// 部门搜索部分样式
+.section-manage .section-search {
+  margin: 16px 10px 10px;
+  border: 1px solid #dbdcdf;
+  input {
+    border: 0;
+    width: 160px;
+    height: 25px;
+  }
+  i {
+    float: right;
+    margin: 5px;
+    cursor: pointer;
+  }
+  span {
+    cursor: pointer;
+  }
+}
+
+// 部门操作样式
+.section-manage .section-option {
+  margin: 20px 10px;
+  > div > div {
+    margin-right: 10px;
+    cursor: pointer;
+    color: #69b1f8;
+  }
+}
+
+// 部门列表样式
+.section-manage .section-list {
+  margin: 10px 0 0 10px;
+}
+
+// 部门树节点选中后的样式
+.section-list-row {
+  background-color: #edf4fa;
+  line-height: 20px;
+}
+
+//部门下拉列表样式
+.dropDown {
+  width: 100%;
+  height: 110px;
+  background: #fff;
+  box-shadow: 0px 3px 7px;
+  position: absolute;
+  z-index: 50;
+  padding: 8px 0 0 10px;
+  overflow: auto;
+}
+
+.user-manage {
+  //用户管理部分每块样式（用户搜索块、添加用户-刷新快、用户列表快）
+  > div {
+    margin: 15px 10px 0px 10px;
+  }
+  //用户搜索选项部分样式
+  .select-user-option {
+    height: 50px;
+    border-bottom: 1px solid #dbdcdf;
+    > div {
+      margin-right: 15px;
+    }
+    //部门及以下复选框样式
+    > div:nth-child(3) {
+      margin-top: 5px;
+      font-size: larger;
+      //去掉勾选框与提示字之间的空隙组件中的是8px
+      span {
+        padding-left: 0px;
+      }
+    }
+  }
+  //用户列表中 操作列下按钮样式
+  .user-list-option {
+    text-align: right;
+    //每个按钮的通用样式
+    span {
+      color: #59acf8;
+      cursor: pointer;
+      padding-left: 10px;
+    }
+    //按钮右边的竖线
+    .user-option-btn {
+      padding-right: 10px;
+      border-right: 1px solid #dbdcdf;
+    }
+  }
+}
+
+//修改 添加用户、编辑用户弹窗 表单中每个选项间距
+.user-from-style {
+  > div {
+    margin-bottom: 10px;
+  }
+}

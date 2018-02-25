@@ -1,0 +1,90 @@
+<div class="enterprise-info enterpriseContent">
+    <div class="userSituation">
+        <span>用户情况</span>
+        <table class="enterpriseTable" *ngIf="enterpriseValue">
+            <tr class="table-cell">
+                <td class="table-td">总人数</td>
+                <td class="table-tr"><span>12</span></td>
+            </tr>
+            <tr class="table-cell">
+                <td class="table-td">激活人数</td>
+                <td class="table-tr"><span>34</span></td>
+            </tr>
+            <tr class="table-cell">
+                <td class="table-td">未激活人数</td>
+                <td class="table-tr"><span class="spanClick" (click)="spanClick()">56</span></td>
+            </tr>
+            <tr class="table-cell">
+                <td class="table-td">冻结人数</td>
+                <td class="table-tr"><span>78</span></td>
+            </tr>
+
+
+        </table>
+    </div>
+    <div class="chartContent">
+        <div>
+            <div class="login">
+                <span>登录日志</span>
+            </div>
+            <diV class="dateFilter">
+                <nz-datepicker style="width: 40%;" (ngModelChange)="_startDate=$event;_startValueChange()" [ngModel]="_startDate" [nzDisabledDate]="_disabledStartDate" [nzFormat]="'YYYY-MM-DD '" [nzPlaceHolder]="'Start date'"></nz-datepicker>
+                <span>至</span>
+                <nz-datepicker style="width: 40%;" (ngModelChange)="_endDate=$event;_endValueChange()" [ngModel]="_endDate" [nzDisabledDate]="_disabledEndDate" [nzFormat]="'YYYY-MM-DD '" [nzPlaceHolder]="'End date'"></nz-datepicker>
+            </diV>
+        </div>
+        <div>
+            <div class="charts" style="" *ngIf="this.option.series.length != 0">
+                <!--<div [echarts]="logCountEcharts" style="height: 300px; width:100%;"></div>-->
+
+                <echarts [option]="this.option" style="width:100%"></echarts>
+
+            </div>
+
+        </div>
+    </div>
+
+    <nz-modal class="modal-authority" [nzWidth] = "'700px'" [nzVisible]="isVisible" [nzTitle]="modalTitle" [nzContent]="modalContent" [nzFooter]="modalFooter" (nzOnCancel)="handleCancel($event)">
+        <ng-template #modalTitle>
+            对话框标题
+        </ng-template>
+        <ng-template #modalContent>
+            <nz-table #nzTable [nzDataSource]="_dataSet" [nzIsPagination]="false">
+                <thead nz-thead>
+                    <tr>
+                        <th nz-th><span>姓名</span></th>
+                        <th nz-th><span>手机号</span></th>
+                        <th nz-th><span>部门</span></th>
+                        <th nz-th><span>操作</span></th>
+                    </tr>
+                </thead>
+                <tbody nz-tbody>
+                    <tr nz-tbody-tr *ngFor="let data of nzTable.data">
+                        <td nz-td>
+                            {{data.name}}
+                        </td>
+                        <td nz-td>{{data.age}}</td>
+                        <td nz-td>{{data.address}}</td>
+
+                        <td nz-td>
+                            <span class="btn-message" (click)='clickMessage(data)'>发送激活短信</span>
+
+                        </td>
+
+                    </tr>
+                </tbody>
+            </nz-table>
+        </ng-template>
+        <ng-template #modalFooter>
+            <button nz-button [nzType]="'default'" [nzSize]="'large'" (click)="handleCancel($event)">
+          返 回
+        </button>
+            <button nz-button [nzType]="'primary'" [nzSize]="'large'" (click)="handleOk($event,_dataSet)">
+          全部发送短信
+        </button>
+        </ng-template>
+    </nz-modal>
+
+
+
+</div>

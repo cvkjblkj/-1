@@ -1,0 +1,9 @@
+.menu-item-small{
+  .ant-menu-submenu > .ant-menu-submenu-title::after {
+    display: none;
+  }
+  // 当菜单栏缩小是，有二级菜单的缩小时，字体省略号取消
+  .ant-menu-inline .ant-menu-submenu-title {
+    text-overflow: clip;
+  }
+}

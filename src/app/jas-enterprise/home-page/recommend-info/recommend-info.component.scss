@@ -1,0 +1,26 @@
+.cardRight {
+  background: #ffffff;
+  width: 25%;
+  .application {
+    .title {
+      padding: 5px 20px;
+    }
+    .substance {
+      padding: 20px;
+      overflow: auto;
+      .clickBox {
+        padding: 19px 0px;
+        background: #E8ECF0;
+        border: 1px solid #E8ECF0;
+        .btn {
+          float: right
+        }
+      }
+      .clickBox:hover { 
+        border: 1px solid #80B0E6;
+        cursor: pointer;
+      
+      }
+    }
+  }
+}

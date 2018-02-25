@@ -1,0 +1,165 @@
+.step {
+    width: 700px;
+    margin: 50px 100px;
+    .steps-content {
+        // margin-top: 16px;
+        border: 1px dashed #e9e9e9;
+        border-radius: 6px;
+        background-color: #fafafa;
+        min-height: 200px;
+        text-align: center;
+        padding-top: 80px;
+        border-top: none;
+        margin-top: 30px;
+        margin-left: 5px;
+    }
+    .steps-action {
+        margin-top: 24px;
+    }
+    .ant-steps .ant-steps-main {
+        position: relative;
+        display: inline-block;
+        vertical-align: top;
+    }
+    .ant-steps .ant-steps-item.ant-steps-custom .ant-steps-head-inner {
+        background: none;
+        border: 0;
+        width: 100%;
+        height: auto;
+    }
+    /*步骤一的css样式*/
+    .nzIconContent {
+        width: 187px;
+        height: 56px;
+        position: absolute;
+        box-sizing: border-box;
+        display: inline-block;
+        .nzIconLeft {
+            width: 80%;
+            background: #CCCCCC;
+            height: 100%;
+            box-sizing: border-box;
+            display: inline-block;
+            float: left;
+        }
+        .nzIconRight {
+            width: 0;
+            height: 0;
+            border-top: 28px solid transparent;
+            border-left: 36px solid #CCCCCC;
+            border-bottom: 29px solid transparent;
+            box-sizing: border-box;
+            display: inline-block;
+        }
+        .oneActive {
+            background: #00A1E9;
+        }
+        .twoActive {
+            border-left: 36px solid #00A1E9;
+        }
+    }
+    /*步骤二 三的样式**/
+    .nzIconSContent {
+        width: 187px;
+        height: 56px;
+        position: absolute;
+        box-sizing: border-box;
+        display: inline-block;
+        .nzIconLeft {
+            width: 80%;
+            height: 100%;
+            display: inline-block;
+            float: left;
+            .nzIconLeftUpContent {
+                position: absolute;
+                width: 0;
+                height: 0;
+                border-top: 32px solid #CCCCCC;
+                border-left: 33px solid transparent;
+            }
+            .nzIconLeftDownContent {
+                position: absolute;
+                top: 18px;
+                width: 0;
+                height: 0;
+                border-bottom: 38px solid #CCCCCC;
+                border-left: 41px solid transparent;
+            }
+            .nzIconRightContent {
+                width: 80%;
+                height: 100%;
+                float: right;
+                background: #CCCCCC;
+            }
+        }
+        .nzIconRight {
+            border-top: 29px solid transparent;
+            border-left: 37px solid #CCCCCC;
+            border-bottom: 26px solid transparent;
+            box-sizing: border-box;
+            display: inline-block;
+        }
+        .threeActive {
+            border-top: 32px solid #00A1E9 !important;
+        }
+        .fourActive {
+            border-bottom: 38px solid #00A1E9 !important;
+        }
+        .fiveActive {
+            background: #00A1E9 !important;
+        }
+        .sixActive {
+            border-left: 37px solid #00A1E9 !important;
+        }
+        .sevenActive {
+            border-top: 32px solid #00A1E9 !important;
+        }
+        .eightActive {
+            border-bottom: 38px solid #00A1E9 !important;
+        }
+        .nineActive {
+            background: #00A1E9 !important;
+        }
+        .tenActive {
+            border-left: 37px solid #00A1E9 !important;
+        }
+    }
+    /*步骤四的样式*/
+    .nzIconTContent {
+        display: inline-block;
+        width: 187px;
+        height: 56px;
+        position: absolute;
+        box-sizing: border-box;
+        .nzIconLeftUpContent {
+            position: absolute;
+            width: 0;
+            height: 0;
+            border-top: 38px solid #CCCCCC;
+            border-left: 41px solid transparent
+        }
+        .nzIconLeftDownContent {
+            position: absolute;
+            top: 18px;
+            width: 0;
+            height: 0;
+            border-bottom: 38px solid #CCCCCC;
+            border-left: 44px solid transparent
+        }
+        .nzIconRightContent {
+            width: 80%;
+            height: 100%;
+            float: right;
+            background: #CCCCCC;
+        }
+        .elevenActive {
+            border-top: 38px solid #00A1E9 !important;
+        }
+        .twelveActive {
+            border-bottom: 38px solid #00A1E9 !important;
+        }
+        .thirteenActive {
+            background: #00A1E9 !important;
+        }
+    }
+}

@@ -1,0 +1,56 @@
+ .has-success .ant-input {
+   border-color: #090
+ }
+
+ form .ant-input {
+   border-radius: 0;
+   height: 32px
+ }
+
+ form .ant-radio-checked .ant-radio-inner {
+   border-color: #090
+ }
+
+ form .ant-radio-inner:after {
+   background-color: #090
+ }
+
+ form .ant-form-explain {
+   float: right;
+   padding: 6px 0px 6px 0px;
+   color: #f04134;
+   width: 125px;
+   margin-right: 7px;
+ }
+
+ .nowPhone form .ant-form-explain {
+   position: relative;
+   left: 18px;
+   float: left;
+ }
+
+ .password-info {
+   form .ant-form-explain {
+     float: left;
+     padding: 6px 0px 6px 10px;
+     color: #f04134;
+     margin-right: 7px;
+     width: 40%
+   }
+   .ant-btn-lg {
+     padding: 0 25px;
+     font-size: 14px;
+     border-radius: 4px;
+     height: 35px;
+     margin: 0 16px;
+   }
+ }
+
+ .ant-select-selection {
+   border-radius: 0 !important;
+   height: 32px !important
+ }
+  /*设置表单固定的margin的值*/
+ .ant-form-item {
+  margin-bottom: 15px;
+}

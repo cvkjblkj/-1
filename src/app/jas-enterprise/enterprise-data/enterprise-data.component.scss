@@ -1,0 +1,29 @@
+.enterprise {
+    width: 90%;
+    position: relative;
+    top: 30px;
+    left: 70px;
+    margin-bottom: 30px;
+}
+
+.component {
+    padding: 15px;
+    border: 1px solid #e5e5e5;
+    border-radius: 10px;
+    .search-filter {
+        margin-bottom: 10px;
+        padding: 10px 0;
+        .dateFiler {
+            width: 35%;
+            display: inline-block;
+            float: left
+        }
+        .restFilter {
+            float: right;
+            width: 17%;
+            .btn {
+                float: right
+            }
+        }
+    }
+}

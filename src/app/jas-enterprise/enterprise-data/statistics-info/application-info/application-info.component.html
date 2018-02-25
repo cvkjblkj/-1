@@ -1,0 +1,61 @@
+<div class="application-info enterpriseContent">
+    <div class="userSituation">
+        <span>用户情况</span>
+        <table class="enterpriseTable" *ngIf="enterpriseValue">
+            <tr class="table-cell">
+                <td class="table-td">总人数</td>
+                <td class="table-tr"><span>12</span></td>
+            </tr>
+            <tr class="table-cell">
+                <td class="table-td">激活人数</td>
+                <td class="table-tr"><span>34</span></td>
+            </tr>
+            <tr class="table-cell">
+                <td class="table-td">未激活人数</td>
+                <td class="table-tr"><span>56</span></td>
+            </tr>
+            <tr class="table-cell">
+                <td class="table-td">冻结人数</td>
+                <td class="table-tr"><span>78</span></td>
+            </tr>
+        </table>
+    </div>
+    <div class="userSituation">
+        <span>用户情况</span>
+        <table class="enterpriseTable" *ngIf="enterpriseValue">
+            <tr class="table-cell">
+                <td class="table-td">总人数</td>
+                <td class="table-tr"><span>12</span></td>
+            </tr>
+            <tr class="table-cell">
+                <td class="table-td">激活人数</td>
+                <td class="table-tr"><span>34</span></td>
+            </tr>
+            <tr class="table-cell">
+                <td class="table-td">未激活人数</td>
+                <td class="table-tr"><span>56</span></td>
+            </tr>
+            <tr class="table-cell">
+                <td class="table-td">冻结人数</td>
+                <td class="table-tr"><span>78</span></td>
+            </tr>
+        </table>
+    </div>
+    <div class="chartContent">
+        <div>
+            <div class="login">
+                <span>登录日志</span>
+            </div>
+            <diV class="dateFilter">
+                <nz-datepicker style="width: 40%;" (ngModelChange)="_startDate=$event;_startValueChange()" [ngModel]="_startDate" [nzDisabledDate]="_disabledStartDate" [nzFormat]="'YYYY-MM-DD'" [nzPlaceHolder]="'Start date'"></nz-datepicker>
+                <span>至</span>
+                <nz-datepicker style="width: 40%;" (ngModelChange)="_endDate=$event;_endValueChange()" [ngModel]="_endDate" [nzDisabledDate]="_disabledEndDate" [nzFormat]="'YYYY-MM-DD'" [nzPlaceHolder]="'End date'"></nz-datepicker>
+            </diV>
+        </div>
+        <div>
+            <div class="charts"  *ngIf="this.option.series.length != 0">
+                <echarts [option]="this.option" style="width:100%"></echarts>
+            </div>
+        </div>
+    </div>
+</div>

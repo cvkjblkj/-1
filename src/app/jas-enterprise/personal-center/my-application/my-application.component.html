@@ -1,0 +1,137 @@
+<div class="application">
+  <div class="component">
+    <div *ngIf="Property">
+      <div class="title">
+        已授权
+      </div>
+      <div class="authorization" *ngFor="let item of collection">
+        <div>
+          <div class="header">
+            <div class="left">
+              <div>
+                <img src={{item.img}} alt="">
+              </div>
+            </div>
+            <div class="right">
+              <div class="name">
+                {{item.name}}
+              </div>
+              <div>
+                <div class="probation" *ngIf="item.num1">
+                  <span>试用版</span>
+                </div>
+
+                <div class="formal" *ngIf="item.num3">
+                  <span>正式版</span>
+                </div>
+                <div class="free" *ngIf="item.num4">
+                  <span>免费版</span>
+
+                </div>
+                <div class="administrators" *ngIf="item.num2">
+                  <span>企业管理员</span>
+                </div>
+              </div>
+              <div class="content">
+                <div>
+                  {{item.description}}
+                </div>
+                <div class="text">
+                  <table class="table">
+                    <tr class="table-cell">
+                      <td class="table-td">授权使用日期</td>
+                      <td class="table-tr">
+                        <span>{{item.department}}</span>
+                      </td>
+                    </tr>
+                    <tr class="table-cell">
+                      <td class="table-td">到期时间</td>
+                      <td class="table-tr">
+                        <span class="spanClick">
+                          <span>{{item.time}}</span>
+                        </span>
+                      </td>
+                    </tr>
+                    <tr class="table-cell">
+                      <td class="table-td">状态</td>
+                      <td class="table-tr">
+                        <span>{{item.status}}</span>
+                      </td>
+                    </tr>
+
+
+                  </table>
+                </div>
+                <div class="btnBox">
+                  <button class="btn btn-message" (click)="handle(item)">进入企业</button>
+                  <button class="btn btn-message" (click)="signout(item)">退出应用</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <div *ngIf="Property">
+      <div class="title">
+        未授权
+      </div>
+      <div class="authorization" *ngFor="let item of collection;let i = index">
+        <div>
+          <div *ngIf="item.num==0" class="confirm">
+            <span class="iconfont-jas icon-jas-gantanhao11-copy"></span> 申请使用已提交成功,正在审核中
+          </div>
+          <div *ngIf="item.num==2" class="confirm">
+            <span class="iconfont-jas icon-jas-gantanhao11-copy"></span> 申请被驳回
+          </div>
+          <div class="header">
+            <div class="left">
+              <div>
+                <img src={{item.img}} alt="">
+              </div>
+            </div>
+            <div class="right">
+              <div class="name">
+                {{item.name}}
+              </div>
+              <div>
+                <div class="probation" *ngIf="item.num1">
+                  <span>试用版</span>
+                </div>
+
+                <div class="formal" *ngIf="item.num3">
+                  <span>正式版</span>
+                </div>
+                <div class="free" *ngIf="item.num4">
+                  <span>免费版</span>
+
+                </div>
+                <div class="administrators" *ngIf="item.num2">
+                  <span>企业管理员</span>
+                </div>
+              </div>
+              <div class="content">
+                <div>
+                  {{item.description}}
+                </div>
+
+                <div class="btnBox">
+                  <button class="btn btn-message" *ngIf="item.num==1" (click)="application(item,i)">申请应用</button>
+                  <button class="btn btn-message" *ngIf="item.num==2" (click)="again(item,i)">重新申请</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <nz-modal [nzVisible]="newIsVisible" *ngIf="newIsVisible" [nzTitle]="'退出企业'" [nzContent]="modalContent" (nzOnCancel)="newhandleCancel($event)"
+    (nzOnOk)="newSendOk($event)" [nzConfirmLoading]="isConfirmLoading">
+    <ng-template #modalContent>
+      <p>您确定要退出{{enterprise.name}}吗</p>
+      <p>退出后将无法使用该应用</p>
+    </ng-template>
+  </nz-modal>
+</div>

@@ -1,0 +1,24 @@
+<div class="head-navigation" [class.head-nav-white]="routeInfo == 'login' || 'register' == routeInfo ">
+  <!--网页logo与网页信息-->
+  <div class="head-logo">
+    <img src="./../../../../assets/img/logo.png" alt="企业图标">
+    <div class="head-info">企业版</div>
+    <!--登录页面显示-->
+    <div *ngIf="routeInfo == 'login'" class="head-login-info">登录</div>
+    <!--注册页面显示-->
+    <div *ngIf="routeInfo == 'register'" class="head-login-info">欢迎注册</div>
+  </div>
+  
+  <!--登陆成功后，显示的用户信息，与退出登陆按钮-->
+  <div class="head-user" *ngIf="routeInfo != 'login'">
+    <img src="./../../../../assets/img/logo.png" alt="用户头像">
+    <span>{{userName}}</span>
+  </div>
+
+</div>
+
+
+
+
+
+

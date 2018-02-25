@@ -1,0 +1,15 @@
+.btn-span {
+    color: $info-btn-text;
+    cursor: pointer;
+    &:hover {
+        text-decoration: underline;
+        text-decoration-color: $info-btn-text;
+    }
+}
+
+.btn-message {
+    padding: 0;
+    color: #00A1E9;
+    background: transparent;
+    cursor: pointer
+}

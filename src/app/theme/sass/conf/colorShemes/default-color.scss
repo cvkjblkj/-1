@@ -1,0 +1,33 @@
+$default:#333333;
+$default-text: $default;
+$body-bg:#62666A;
+// 内容区域的字体颜色
+$content-text:$default-text;
+// 特殊提示字体颜色
+$info-btn-text:#59ACF8;
+// 头部区域的字体颜色
+$header-text: #ffffff;
+$label-text:$default;
+// border 
+$border:rgba(211, 211, 211, 1);
+$border-light:rgba(211, 211, 211, 0.3);
+// input 
+$input-border:#ccc;
+$input-background:rgba(255, 255, 255, 0.1);
+// sidebar
+$sidebar-text:$default;
+$button-text:$header-text;
+$content-bg: #ffffff;
+$button-bg:#59ACF8;
+$primary: #209e91 !default;
+$info: $button-bg !default;
+$cancle: #FFF !default;
+$success: #90b900 !default;
+$warning: #dfb81c !default;
+$danger: #e85656 !default;
+$primary-light:tint($primary, 30%);
+$primary-dark:shade($primary, 15%);
+$info-dark:tint($info, 30%);
+$info-dark:shade($info, 15%);
+$cancle-dark:tint($cancle, 30%);
+$cancle-dark:shade($cancle, 15%);

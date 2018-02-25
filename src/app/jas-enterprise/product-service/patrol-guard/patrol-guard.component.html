@@ -1,0 +1,137 @@
+<div class="patrol">
+  <div class="component">
+    <!-- <div class="title">
+      企业信息
+    </div> -->
+    <div *ngIf="Property">
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 substance">
+        <div class="imgCard col-lg-2 col-md-2 col-sm-2 col-xs-2">
+          <div>
+
+          </div>
+        </div>
+        <div class=" textCont col-lg-10 col-md-10 col-sm-10 col-xs-10">
+          <div class="enterpriseName col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <h4> 巡线卫士</h4>
+          </div>
+          <div class="content col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            巡线卫士是一款为管线安全生产管理提供支撑的移动应用软件,通过云端巡检、闭环管理和移动互联,能够实时监控巡检动态、优化巡检流程,从而提高管线管理工作的效率。
+          </div>
+          <div class="foot fr col-lg-2 col-md-2 col-sm-2 col-xs-2">
+            <span class="btn-message">详情
+              <span>>></span>
+            </span>
+          </div>
+        </div>
+      </div>
+      <div class="btnBox col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-2">
+          <button class="btn btn-info fr">立即开通</button>
+        </div>
+
+      </div>
+    </div>
+    <div *ngIf="!Property">
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 substance">
+        <div class="imgCard col-lg-2 col-md-2 col-sm-2 col-xs-2">
+          <div>
+
+          </div>
+        </div>
+        <div class="textCont col-lg-10 col-md-10 col-sm-10 col-xs-10">
+          <div class="head">
+            <div class="enterpriseName fl">
+              巡线卫士
+            </div>
+            <div class="probation fl" *ngIf="Property">
+              <span>试用版</span>
+            </div>
+            <!-- <div class="free fl">
+              <span>免费版</span>
+            </div> -->
+            <!-- <div class="formal fl">
+              <span>正式版</span>
+            </div> -->
+
+            <div class="free fl">
+              <span>免费版</span>
+            </div>
+            <div class="immediate fl">
+              <button class="btn btn-message" (click)="stop()">停用</button>
+            </div>
+          </div>
+
+          <div class="content col-lg-8 col-md-8 col-sm-8 col-xs-8">
+            巡线卫士是一款为管线安全生产管理提供支撑的移动应用软件,通过云端巡检、闭环管理和移动互联,能够实时监控巡检动态、优化巡检流程,从而提高管线管理工作的效率。
+          </div>
+          <div class="foot fr col-lg-2 col-md-2 col-sm-2 col-xs-2">
+            <span class="btn-message">详情
+              <span>>></span>
+            </span>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 footer">
+        <table class="enterpriseTable  col-lg-12 col-md-12 col-sm-12 col-xs-12">
+          <tr class="table-cell fl" style="width:25%">
+            <td class="table-td">开通日期</td>
+            <td class="table-tr">
+              <span>2017-11-10</span>
+            </td>
+          </tr>
+          <tr class="table-cell fl" style="width:25%">
+            <td class="table-td">到期日期</td>
+            <td class="table-tr">
+              <span>2017-11-10</span>
+            </td>
+          </tr>
+          <tr class="table-cell fl" style="width:25%">
+            <td class="table-td">状态</td>
+            <td class="table-tr">
+              <span>未激活</span>
+            </td>
+          </tr>
+          <tr class="table-cell fl" style="width:25%">
+            <td class="table-td">管理员</td>
+            <td class="table-tr">
+              <span>刘燕</span>
+
+            </td>
+            <td class="table-tr">
+              <span class="btn btn-message" (click)="change()">更换管理员</span>
+            </td>
+          </tr>
+
+
+        </table>
+      </div>
+    </div>
+  </div>
+  <nz-modal [nzVisible]="newIsVisible" *ngIf="newIsVisible" [nzTitle]="'停用'" [nzContent]="modalContent" (nzOnCancel)="newhandleCancel($event)"
+    (nzOnOk)="newSendOk($event)">
+    <ng-template #modalContent>
+      <p>您确定要停用巡线卫士吗？</p>
+      <p>停用后本企业用户将无法使用该产品</p>
+    </ng-template>
+  </nz-modal>
+  <!-- <p-autoComplete [(ngModel)]="val" [suggestions]="results" (completeMethod)="search($event)" field="name"></p-autoComplete> -->
+  <nz-modal [nzVisible]="isVisible" class="select" *ngIf="isVisible" [nzTitle]="'更换应用管理员'" [nzContent]="modalContent" (nzOnCancel)="newhandleCancel($event)"
+    (nzOnOk)="sendOk($event)">
+    <ng-template #modalContent>
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 selectUser">
+        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3  binding">
+          选择企业用户
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 Content">
+          <nz-select style="width: 200px;" nzAllowClear [nzPlaceHolder]="'请输入姓名进行搜索'" [nzNotFoundContent]="'无法找到'" [(ngModel)]="selectedOption"
+            [nzShowSearch]="true">
+            <nz-option *ngFor="let option of searchOptions" [nzLabel]="option.label" [nzValue]="option.value" [nzDisabled]="option.disabled">
+            </nz-option>
+          </nz-select>
+        </div>
+
+      </div>
+
+    </ng-template>
+  </nz-modal>
+</div>

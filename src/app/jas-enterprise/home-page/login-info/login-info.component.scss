@@ -1,0 +1,65 @@
+.login-info {
+  position: relative;
+  margin-bottom: 30px;
+  padding: 15px;
+  background: #E8ECF0;
+  .component {
+    padding: 10px 0;
+    border-radius: 10px;
+    .header {
+      width: 100;
+      overflow: auto; // .cardLeft {
+      .cardLeft {
+        width: 74%; // background: skyblue;
+        background: #ffffff;
+        height: 168px;
+        text-align: center;
+        line-height: 168px;
+        font-size: 14px;
+        .substance {
+          .btn {
+            vertical-align: baseline;
+          }
+        }
+      }
+      .cardRight {
+        background: #ffffff;
+        width: 25%;
+        .title {
+          padding: 5px 20px;
+        }
+        .substance {
+          overflow: auto;
+          padding: 15px 20px;
+          .enterpriseTable {
+            width: 100%;
+            .table-cell {
+              float: left;
+              height: 27.5px;
+              width: 100%;
+            }
+          }
+        }
+      }
+    }
+    .content {
+      width: 100%;
+      padding: 10px 0;
+      overflow: auto;
+    } // .substance .clickBox:hover {
+    //   border: 1px solid #80B0E6;
+    //   cursor: pointer;
+    //   box-sizing: border-box;
+    // }
+  }
+}
+
+.box {
+  width: 100px;
+  height: 100px;
+  background: #E8ECF0
+}
+
+.box:hover {
+  border: 1px solid red
+}

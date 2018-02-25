@@ -1,0 +1,121 @@
+body,
+ol,
+ul,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+th,
+td,
+dl,
+dd,
+form,
+fieldset,
+legend,
+input,
+textarea,
+select {
+  margin: 0;
+  padding: 0
+}
+
+*,
+*:before,
+*:after {
+  @include box-sizing("box-sizing");
+}
+
+body {
+  font: 12px "微软雅黑";
+  background: $body-bg;
+  -webkit-text-size-adjust: 100%;
+}
+
+a {
+  color: $info-btn-text;
+  text-decoration: none
+}
+
+a:hover {
+  text-decoration: none
+}
+
+em {
+  font-style: normal
+}
+
+ol,
+ul,
+li {
+  list-style: none;
+}
+
+img {
+  border: 0;
+  vertical-align: middle
+}
+
+.fl {
+  float: left;
+}
+
+.fr {
+  float: right;
+}
+
+.index {
+  overflow: hidden;
+}
+
+
+/*css为clearfix，清除浮动*/
+
+.clearfix:after {
+  content: " ";
+  display: block;
+  clear: both;
+  height: 0;
+}
+
+.clearfix {
+  zoom: 1;
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+a,
+input,
+button {
+  outline: none;
+}
+
+input,
+select {
+  vertical-align: middle;
+}
+
+button,
+input,
+select,
+textarea {
+  font-size: 100%;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0
+}
+
+td,
+th {
+  display: table-cell
+}
+
+p {
+  word-wrap: break-word
+}

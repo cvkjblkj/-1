@@ -1,0 +1,55 @@
+<div class="handle-info enterprise">
+    <div class="component ">
+        <div class="search-filter">
+            <div class="dateFiler">
+                <nz-datepicker style="width: 40%;" (ngModelChange)="_startDate=$event;_startValueChange()" [ngModel]="_startDate" [nzDisabledDate]="_disabledStartDate" [nzFormat]="'YYYY-MM-DD '" [nzPlaceHolder]="'Start date'"></nz-datepicker>
+                <span>至</span>
+                <nz-datepicker style="width: 40%;" (ngModelChange)="_endDate=$event;_endValueChange()" [ngModel]="_endDate" [nzDisabledDate]="_disabledEndDate" [nzFormat]="'YYYY-MM-DD '" [nzPlaceHolder]="'End date'"></nz-datepicker>
+            </div>
+            <div class="toobar clearfix">
+                <div class="search fl clearfix">
+                    <input type="search fl" class="input-search" placeholder="输入关键字搜索" [(ngModel)]="searchValue">
+                    <i class="anticon anticon-search ant-input-search-icon icon-btn-search"></i>
+                    <button class="btn btn-info fr" (click)='search()'>搜索</button>
+                </div>
+                <button class="btn btn-cancle fr">刷新</button>
+            </div>
+        </div>
+        <div class="listContent">
+            <nz-table #nzTable [nzDataSource]="_dataSet" [nzPageSize]="10" [nzTotal]="50" [nzShowSizeChanger]="true" [nzCustomNoResult]="true" [nzShowTotal]="true" [nzLoading]="true" [nzBordered]="true" (nzPageIndexChange)="PageIndexChange($event)" (nzPageSizeChange)="nzPageSizeChange($event)">
+                <span noResult>没有数据啦，哈哈哈哈！！！</span>
+                <thead nz-thead>
+                    <tr>
+                        <th nz-th><span>姓名</span></th>
+                        <th nz-th><span>手机号</span></th>
+                        <th nz-th><span>部门</span></th>
+                        <th nz-th><span>职位</span></th>
+                        <th nz-th><span>登录时间</span></th>
+                        <th nz-th><span>登录省份</span></th>
+                        <th nz-th><span>登录城市</span></th>
+                        <th nz-th><span>登录IP</span></th>
+                        <th nz-th><span>客服端类型</span></th>
+                        <th nz-th><span>操作系统</span></th>
+                    </tr>
+                </thead>
+                <tbody nz-tbody>
+                    <tr nz-tbody-tr *ngFor="let data of nzTable.data">
+                        <td nz-td>{{data.name}}</td>
+                        <td nz-td>{{data.age}}</td>
+                        <td nz-td>{{data.address}}</td>
+                        <td nz-td>{{data.number}}</td>
+                        <td nz-td>{{data.colorName}}</td>
+                        <td nz-td>{{data.name}}</td>
+                        <td nz-td>{{data.age}}</td>
+                        <td nz-td>{{data.address}}</td>
+                        <td nz-td>{{data.number}}</td>
+                        <td nz-td>{{data.colorName}}</td>
+
+                    </tr>
+                </tbody>
+            </nz-table>
+        </div>
+    </div>
+
+
+</div>

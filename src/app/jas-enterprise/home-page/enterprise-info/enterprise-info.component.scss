@@ -1,0 +1,68 @@
+.cardLeft {
+  width: 74%; // background: skyblue;
+  background: #ffffff;
+  .title {
+    padding: 5px 20px;
+  }
+  .substance {
+    overflow: auto;
+    padding: 10.5px 0;
+    .imgCard {
+      div {
+        width: 70px;
+        height: 70px;
+        border: 1px solid #e5e5e5;
+        position: relative;
+        left: 50%;
+        margin-left: -35px
+      }
+    }
+    .textCont {
+      .head {
+        .certified {
+          position: relative;
+          top: -13px;
+          padding: 0 10px;
+          span {
+            background: #00AA7A
+          }
+        }
+        .uncertified {
+          position: relative;
+          top: -13px;
+          padding: 0 10px 0 10px;
+          span {
+            background: #FFC200
+          }
+        }
+        .immediate {
+          padding: 0 20px
+        }
+      }
+      .content {
+        clear: both;
+        border-bottom: 1px solid #e5e5e5;
+        overflow: auto;
+        padding: 10px 0;
+        span {
+          margin: 0 10px 0 0;
+        }
+      }
+      .foot {
+        padding: 20px 0;
+        width: 100%;
+        overflow: auto;
+        div {
+          width: 35%;
+          float: left;
+          span {
+            margin: 0 10px 0 0
+          }
+          .btn {
+            vertical-align: baseline;
+          }
+        }
+      }
+    }
+  }
+}

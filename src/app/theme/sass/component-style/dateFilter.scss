@@ -1,0 +1,41 @@
+        .component .dateFiler .ant-calendar-picker-input {
+          border-radius: 0;
+          transition: all 0.1s ease;
+          font-size: 12px;
+          height: 32px; // width: 200px;
+        }
+
+        .enterpriseContent .chartContent .dateFilter .ant-calendar-picker-input {
+          border-radius: 0;
+          transition: all 0.1s ease;
+          font-size: 12px;
+          height: 32px; // width: 200px;
+        }
+
+        .enterpriseContent .ant-modal-footer button {
+          border-radius: 0 !important
+        }
+
+        .enterprise-info {
+          @media (min-width: 544px) {
+            .enterpriseContent .ant-modal {
+              width: 600px !important;
+              max-width: 600px;
+              margin: 90px auto;
+            }
+          }
+          @media (min-width: 768px) {
+            .enterpriseContent .ant-modal {
+              width: 700px !important;
+              max-width: 700px;
+              margin: 90px auto;
+            }
+          }
+          @media (min-width: 992px) {
+            .enterpriseContent .ant-modal {
+              width: 900px !important;
+              max-width: 1100px;
+              margin: 90px auto;
+            }
+          }
+        }
